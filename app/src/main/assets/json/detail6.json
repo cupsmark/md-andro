@@ -1,0 +1,15 @@
+{
+	"status" : true,
+	"created_at" : "2016-09-18 10:00:00",
+	"msg" : "",
+	"item" : [
+		{
+			"id" : 6,
+			"title" : "Office Room 6",
+			"image" : "Office6.jpg",
+			"desc" : "Dengan ruangan dengan design yang modern dan futuristik, Office Room 6 sangat cocok untuk anda yang membutuhkan suasana bekerja yang berbeda",
+			"rate" : 9.5,
+			"date_created" : "2016-09-18 12:00:00"
+		}
+	]
+}

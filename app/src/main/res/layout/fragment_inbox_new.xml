@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/inbox_new_topbar"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_back_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/inbox_new_imagebutton_back"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:id="@+id/inbox_new_pagetitle" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/inbox_new_topbar"
+        android:id="@+id/inbox_new_target_address"
+        android:padding="15dp"
+        android:background="@drawable/border_bottom_white_old">
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/base_text_normal"
+            android:textSize="16sp"
+            android:text="To : "
+            android:id="@+id/inbox_new_target_caption"
+            android:layout_marginRight="10dp" />
+
+        <com.meetdesk.view.UIText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/base_blue_opac"
+            android:textSize="16sp"
+            android:id="@+id/inbox_new_target_value"
+            android:text="asdad@afdasd"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/inbox_new_recycler"
+        android:padding="0dp"
+        android:listSelector="@android:color/transparent"
+        android:background="@android:color/transparent"
+        android:scrollbars="none"
+        android:layout_above="@+id/inbox_new_relative_bottombar"
+        android:layout_below="@+id/inbox_new_target_address"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/border_top_white_old"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/inbox_new_relative_bottombar">
+
+
+        <ImageButton
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:id="@+id/inbox_new_imagebutton_attach"
+            android:src="@drawable/icon_inbox_new_attach"
+            android:layout_alignParentLeft="true"
+            android:padding="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <com.meetdesk.view.UIEditText
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_toRightOf="@+id/inbox_new_imagebutton_attach"
+            android:layout_toLeftOf="@+id/inbox_new_imagebutton_send"
+            android:inputType="textMultiLine"
+            android:gravity="left|top"
+            android:textColor="@color/base_black"
+            android:textColorHint="@color/base_text_normal"
+            android:id="@+id/inbox_new_message"
+            android:hint="@string/inbox_new_create_hint"/>
+
+        <ImageButton
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="@android:color/transparent"
+            android:id="@+id/inbox_new_imagebutton_send"
+            android:src="@drawable/icon_inbox_new_send"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

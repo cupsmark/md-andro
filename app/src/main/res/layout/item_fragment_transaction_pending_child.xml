@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white_darker">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_black"
+            android:textSize="16sp"
+            android:text="Date"
+            android:visibility="gone"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_red"
+            android:textSize="14sp"
+            android:text=""
+            android:id="@+id/item_transaction_pending_child_date"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_black"
+            android:textSize="16sp"
+            android:text="Transaction ID"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_text_normal"
+            android:textSize="14sp"
+            android:text=""
+            android:id="@+id/item_transaction_pending_child_code"
+            android:layout_marginBottom="10dp"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_black"
+            android:textSize="16sp"
+            android:text="Description"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_text_normal"
+            android:textSize="14sp"
+            android:text=""
+            android:id="@+id/item_transaction_pending_child_desc"
+            android:layout_marginBottom="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_black"
+                android:textSize="16sp"
+                android:text="Amount"
+                android:layout_alignParentLeft="true"/>
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_text_normal"
+                android:textAllCaps="true"
+                android:textSize="14sp"
+                android:layout_alignParentRight="true"
+                app:fontType="semibold"
+                android:id="@+id/item_transaction_pending_child_price"
+                android:text=""/>
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

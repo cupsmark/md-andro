@@ -1,0 +1,15 @@
+{
+	"status" : true,
+	"created_at" : "2016-09-18 10:00:00",
+	"msg" : "",
+	"item" : [
+		{
+			"id" : 10,
+			"title" : "Office Room 10",
+			"image" : "Office10.jpg",
+			"desc" : "Apabila Anda adalah pemilik start-up ataupun perusahaan yang berbasis di daerah Slipi dan sekitarnya, memilih Office Room 10 ini sebagai tempat kerja Anda adalah keputusan yang tepat. Kapasitas ruangan yang disediakan Office Room 10 ini sangat beragam dan tentunya dapat memenuhi kebutuhan Anda.",
+			"rate" : 9.3,
+			"date_created" : "2016-09-18 12:00:00"
+		}
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"status" : true,
+	"created_at" : "2016-09-18 10:00:00",
+	"msg" : "",
+	"item" : [
+		{
+			"id" : 2,
+			"title" : "Office Room 2",
+			"image" : "Office2.jpg",
+			"desc" : "Akses yang dibutuhkan untuk menuju kantor sangat mudah. Karena dekat dengan stasiun dan juga jalan tol. Konsep dan ruangan yang ada didalam kantor ini pun bergaya modern",
+			"rate" : 8.8,
+			"date_created" : "2016-09-18 12:00:00"
+		}
+	]
+}

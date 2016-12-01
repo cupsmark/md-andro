@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <RelativeLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/app_name"
+            android:id="@+id/item_hotlist_image" />
+
+        <RelativeLayout
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="5dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_hotlist_badge"/>
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_black"
+                android:textSize="16sp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/item_hotlist_rate"
+                android:paddingLeft="3dp"
+                android:layout_marginTop="5dp"/>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:background="@drawable/border_bottom_white_old">
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_black"
+            android:textSize="16sp"
+            android:id="@+id/item_hotlist_title"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_text_normal"
+            android:textSize="14sp"
+            android:id="@+id/item_hotlist_desc"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/base_blue"
+            android:textSize="14sp"
+            android:text="@string/hotlist_detail"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

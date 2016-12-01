@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:id="@+id/auth_signup_bg"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
+
+            <ImageView
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_splash"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/border_bottom_grey">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:textSize="15sp"
+                    android:text="NAME"
+                    android:layout_marginRight="10dp"/>
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:hint=""
+                    android:textColorHint="@color/base_white"
+                    android:textColor="@color/base_white"
+                    android:textSize="15sp"
+                    android:inputType="text"
+                    android:id="@+id/auth_signup_name" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/border_bottom_grey">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:textSize="15sp"
+                    android:text="EMAIL"
+                    android:layout_marginRight="10dp"/>
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:textColorHint="@color/base_white"
+                    android:textColor="@color/base_white"
+                    android:textSize="15sp"
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/auth_signup_email" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/border_bottom_grey">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:textSize="15sp"
+                    android:text="PASSWORD"
+                    android:layout_marginRight="10dp"/>
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:textColorHint="@color/base_white"
+                    android:textColor="@color/base_white"
+                    android:textSize="15sp"
+                    android:inputType="textPassword"
+                    android:id="@+id/auth_signup_password" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="15dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/border_bottom_grey">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:textSize="15sp"
+                    android:text="GENDER"
+                    android:layout_marginRight="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:id="@+id/auth_signup_male"
+                        android:layout_marginRight="20dp">
+
+                        <RelativeLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/selector_signup_radio"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:id="@+id/auth_signup_male_icon">
+
+                        </RelativeLayout>
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/base_white"
+                            android:textSize="14sp"
+                            android:text="MALE"
+                            android:id="@+id/auth_signup_male_text"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:id="@+id/auth_signup_female"
+                        android:layout_marginRight="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:background="@drawable/selector_signup_radio"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:id="@+id/auth_signup_female_icon">
+
+                        </RelativeLayout>
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/base_white"
+                            android:textSize="14sp"
+                            android:text="FEMALE"
+                            android:id="@+id/auth_signup_female_text"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:paddingBottom="10dp">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:textSize="15sp"
+                    android:text="BIRTHDAY"
+                    android:layout_marginRight="10dp"/>
+
+                <com.meetdesk.view.UIButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/base_white"
+                    android:textSize="14sp"
+                    android:id="@+id/auth_signup_birthday"
+                    android:text="Nov 02, 1990" />
+
+            </LinearLayout>
+
+
+            <com.meetdesk.view.UIButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_auth_select_type_btn_search"
+                android:text="SIGN UP"
+                android:textColor="@color/base_white"
+                android:textSize="16sp"
+                android:id="@+id/auth_signup_send" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

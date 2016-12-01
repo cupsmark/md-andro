@@ -1,0 +1,27 @@
+{
+	"status" : true,
+	"created_at" : "2016-09-18 10:00:00",
+	"msg" : "",
+	"item" : [
+		{
+			"id" : 1,
+			"title" : "Jakarta"
+		},
+	  	{
+			"id" : 2,
+			"title" : "Bogor"
+	  	},
+	  	{
+			"id" : 3,
+			"title" : "Bandung"
+	  	},
+	  	{
+			"id" : 4,
+			"title" : "Bali"
+	  	},
+		{
+		  	"id" : 5,
+		  	"title" : "Yogyakarta"
+		}
+	]
+}

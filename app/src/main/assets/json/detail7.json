@@ -1,0 +1,15 @@
+{
+	"status" : true,
+	"created_at" : "2016-09-18 10:00:00",
+	"msg" : "",
+	"item" : [
+		{
+			"id" : 7,
+			"title" : "Office Room 7",
+			"image" : "Office7.jpg",
+			"desc" : "Office Room 7 merupakan perwujudan desain yang unik dan elegan yang terletak strategis di salah satu bangunan paling terkenal di jantung kota Jakarta, yaitu Lorem Ipsum Building.",
+			"rate" : 8.9,
+			"date_created" : "2016-09-18 12:00:00"
+		}
+	]
+}

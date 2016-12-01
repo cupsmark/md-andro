@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/wishlist_topbar">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_back_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/wishlist_imagebutton_back"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:text="@string/pagetitle_wishlist"/>
+
+        <com.meetdesk.view.UIButton
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textColor="@color/base_white"
+            android:textSize="14sp"
+            android:text="@string/wishlist_edit"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:layout_centerVertical="true"
+            android:id="@+id/wishlist_button_edit"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wishlist_recycler"
+        android:padding="1dp"
+        android:listSelector="@android:color/transparent"
+        android:background="@color/base_white"
+        android:scrollbars="none"/>
+
+</LinearLayout>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:id="@+id/auth_signin_bg"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp">
+
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/icon_splash"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="80dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/border_bottom_white">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_auth_login_username"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+
+            <com.meetdesk.view.UIEditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:hint="USERNAME"
+                android:textColorHint="@color/base_white"
+                android:textColor="@color/base_white"
+                android:textSize="15sp"
+                android:inputType="text"
+                android:id="@+id/auth_signin_username" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/border_bottom_white">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_auth_login_password"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+
+            <com.meetdesk.view.UIEditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:hint="PASSWORD"
+                android:textColorHint="@color/base_white"
+                android:textColor="@color/base_white"
+                android:textSize="15sp"
+                android:inputType="textPassword"
+                android:id="@+id/auth_signin_password" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+
+            <com.meetdesk.view.UIButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_auth_select_type_btn_search"
+                android:text="SIGN IN"
+                android:textColor="@color/base_white"
+                android:textSize="16sp"
+                android:id="@+id/auth_signin_send"
+                android:layout_marginBottom="20dp"/>
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/auth_signin_button_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"/>
+
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/bg_button_google"
+                android:background="@android:color/transparent"
+                android:id="@+id/auth_signin_button_google"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <com.meetdesk.view.UIButton
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_black_original"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/base_white"
+        android:textSize="15sp"
+        android:text="Create a new Meetdesk Account"
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:id="@+id/auth_signin_create"/>
+
+</RelativeLayout>

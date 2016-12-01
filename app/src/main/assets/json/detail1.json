@@ -1,0 +1,15 @@
+{
+	"status" : true,
+	"created_at" : "2016-09-18 10:00:00",
+	"msg" : "",
+	"item" : [
+		{
+			"id" : 1,
+			"title" : "Office Room 1",
+			"image" : "Office1.jpg",
+			"desc" : "Berpusat di jantung kota Jakarta, Kantor ini menghadirkan konsep yang artistik dan modern. Juga fasilitas yang dibutuhkan agar karyawan dapat nyaman ketika sedang bekerja",
+			"rate" : 8.2,
+			"date_created" : "2016-09-18 12:00:00"
+		}
+	]
+}

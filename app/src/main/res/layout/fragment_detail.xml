@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/fragment_detail_topbar"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_back_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/fragment_detail_imagebutton_back"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:text="@string/pagetitle_detail"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:id="@+id/fragment_detail_scrollview"
+        android:layout_below="@+id/fragment_detail_topbar"
+        android:layout_above="@+id/fragment_detail_next_step"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/base_blue_darker"
+                android:padding="5dp">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:textColor="@color/base_white"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_detail_text_title"
+                    android:text=""
+                    app:fontType="Bold"/>
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    style="@style/RatingBarDetail"
+                    android:numStars="5"
+                    android:stepSize="0.2"
+                    android:rating="4.0"
+                    android:isIndicator="true"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5"
+                    android:transformPivotX="0dp"
+                    android:transformPivotY="0dp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/base_white_darker"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/fragment_detail_feature_wifi">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:contentDescription="@string/app_name"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/icon_wifi_black"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_black"
+                        android:textSize="12sp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/fragment_detail_wifi"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/fragment_detail_feature_breakfast">
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="30dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:contentDescription="@string/app_name"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/icon_phone_black"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_black"
+                        android:textSize="12sp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/fragment_detail_phone"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/fragment_detail_feature_parking">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="30dp"
+                        android:padding="3dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:contentDescription="@string/app_name"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/icon_parking_black"
+                        android:layout_gravity="center_horizontal"/>
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_black"
+                        android:textSize="12sp"
+                        android:layout_gravity="center_horizontal"
+                        android:text="@string/fragment_detail_parking"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name"
+                android:id="@+id/fragment_detail_image"
+                android:layout_marginBottom="10dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/base_text_normal"
+                    android:layout_marginBottom="10dp"></RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/base_black"
+                        android:text="@string/fragment_detail_reviews"
+                        android:layout_marginRight="10dp"/>
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="@color/base_white"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/bg_rounded_blue"
+                        android:text="8.5"
+                        android:id="@+id/fragment_detail_review_value"
+                        android:layout_marginRight="10dp"/>
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="11sp"
+                        android:textColor="@color/base_blue"
+                        android:text="Excellent Reviews"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_detail_reviews"
+                    android:id="@+id/fragment_detail_desc"
+                    android:layout_marginRight="10dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:id="@+id/detail_button_message"
+                        android:layout_marginRight="15dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/icon_detail_message"
+                            android:background="@android:color/transparent"
+                            android:layout_marginRight="5dp"/>
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/base_text_normal"
+                            android:textSize="12sp"
+                            android:text="Send Message"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:clickable="true"
+                        android:id="@+id/detail_button_wishlist"
+                        android:layout_marginRight="10dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/icon_detail_wishlist"
+                            android:background="@android:color/transparent"
+                            android:layout_marginRight="5dp"/>
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/base_text_normal"
+                            android:textSize="12sp"
+                            android:text="Add to Wishlist"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <com.meetdesk.view.UIButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:textColor="@color/base_white"
+        android:textSize="20sp"
+        android:text="@string/fragment_detail_next_step"
+        android:id="@+id/fragment_detail_next_step"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

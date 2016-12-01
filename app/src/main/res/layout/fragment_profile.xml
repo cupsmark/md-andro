@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/profile_topbar"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_back_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/profile_imagebutton_back"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:text="@string/pagetitle_profile"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/profile_topbar"
+        android:layout_above="@+id/profile_button_edit"
+        android:background="@color/base_blue_darker">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_profile">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp">
+
+                    <com.meetdesk.view.UICircleImageView
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        app:civ_border_width="5dp"
+                        app:civ_border_color="@color/base_blue_darker"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/profile_circleimage_avatar"/>
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_white"
+                        android:textSize="24sp"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/profile_text_fullname"
+                        app:fontType="bold" />
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_white"
+                        android:textSize="16sp"
+                        android:id="@+id/profile_text_email"
+                        android:layout_gravity="center_horizontal" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/icon_profile_phone"
+                                />
+
+                            <com.meetdesk.view.UIText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@color/base_white"
+                                android:id="@+id/profile_text_phone"
+                                android:layout_gravity="center_vertical"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="10dp">
+
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerInside"
+                                android:contentDescription="@string/app_name"
+                                android:src="@drawable/icon_profile_map"
+                                />
+
+                            <com.meetdesk.view.UIText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="@color/base_white"
+                                android:id="@+id/profile_text_location"
+                                android:layout_gravity="center_vertical"/>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="@color/base_blue_darker">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_profile_caption_about"
+                    android:textColor="@color/base_white"
+                    android:textSize="18sp"
+                    android:background="@drawable/border_bottom_white"
+                    android:paddingBottom="5dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_text_about"
+                    android:textColor="@color/base_white"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:clickable="true"
+        android:id="@+id/profile_button_edit"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_profile_edit"
+                android:layout_marginRight="5dp"/>
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_white"
+                android:textSize="16sp"
+                android:text="@string/fragment_profile_caption_edit"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

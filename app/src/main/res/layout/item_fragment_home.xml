@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:contentDescription="@string/app_name"
+            android:background="@android:color/transparent"
+            android:id="@+id/item_home_image"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#99000000"
+            android:layout_alignBottom="@+id/item_home_image"
+            android:layout_alignTop="@+id/item_home_image"
+            android:layout_alignLeft="@+id/item_home_image"
+            android:layout_alignRight="@+id/item_home_image"></RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true">
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textColor="@color/base_white"
+                android:text=""
+                app:fontType="bold"
+                android:shadowColor="@color/base_black"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:id="@+id/item_home_title"/>
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/base_white"
+                android:text=""
+                android:shadowColor="@color/base_black"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:id="@+id/item_home_desc"/>
+
+        </LinearLayout>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_half_rounded_blue"
+            android:layout_alignParentRight="true"
+            android:textSize="16sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/base_white"
+            android:layout_centerVertical="true"
+            android:text="8.5"
+            android:id="@+id/item_home_rate" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

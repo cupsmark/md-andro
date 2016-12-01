@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp">
+
+            <com.meetdesk.view.UIText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/base_black"
+                android:textSize="16sp"
+                android:id="@+id/item_transaction_history_title"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/item_transaction_history_status"/>
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/base_text_normal"
+                android:textSize="14sp"
+                android:id="@+id/item_transaction_history_status"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp">
+
+            <com.meetdesk.view.UIText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/base_text_normal"
+                android:textSize="14sp"
+                android:id="@+id/item_transaction_history_desc"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/item_transaction_history_process"/>
+
+            <com.meetdesk.view.UIButton
+                android:layout_width="90dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/base_white"
+                android:textSize="14sp"
+                android:background="@drawable/bg_rounded_red"
+                android:text="Process"
+                android:textAllCaps="false"
+                android:id="@+id/item_transaction_history_process"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_triangle_top"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/item_transaction_history_triangle"></RelativeLayout>
+
+</RelativeLayout>

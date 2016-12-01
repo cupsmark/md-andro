@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/select_type_topbar"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_back_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/select_type_imagebutton_back"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:text="@string/pagetitle_select_type"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue_darker"
+        android:padding="10dp">
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/base_white"
+            android:textSize="14sp"
+            android:text="Select City &amp; Space Type"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:padding="3dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_select_type_map" />
+
+            <com.meetdesk.view.UIButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp"
+                android:textColor="@color/base_blue_darker"
+                android:background="@color/base_white_darker"
+                android:textSize="16sp"
+                android:text="Jakarta"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/select_type_button_city"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="40dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"
+                android:padding="5dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/icon_select_type_room" />
+
+            <com.meetdesk.view.UIButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="30dp"
+                android:textColor="@color/base_blue_darker"
+                android:background="@color/base_white_darker"
+                android:textSize="16sp"
+                android:text="Coworking Space"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textAllCaps="false"
+                android:id="@+id/select_type_button_category"/>
+        </LinearLayout>
+
+        <com.meetdesk.view.UIButton
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/bg_rounded_blue"
+            android:textColor="@color/base_white"
+            android:textSize="16sp"
+            android:text="DONE"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/select_type_button_done"/>
+    </LinearLayout>
+
+
+</LinearLayout>

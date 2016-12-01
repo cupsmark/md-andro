@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_blue_darker">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true">
+
+            <com.meetdesk.view.UICircleImage
+                android:id="@+id/slidemenu_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@android:color/transparent"
+                android:layout_marginBottom="10dp" />
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_white"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20sp"
+                android:text=""
+                android:id="@+id/slidemenu_fullname"/>
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_white"
+                android:layout_gravity="center_horizontal"
+                android:textSize="17sp"
+                android:text=""
+                android:id="@+id/slidemenu_email"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_close_white"
+            android:id="@+id/slidemenu_close"
+            android:adjustViewBounds="true"
+            android:padding="8dp"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/v3_gallery_relativelayout_topbar"
+        android:id="@+id/recyclerview_menu"
+        android:padding="0dp"
+        android:listSelector="@android:color/transparent"
+        android:background="@android:color/transparent"
+        android:scrollbars="none"/>
+
+</LinearLayout>

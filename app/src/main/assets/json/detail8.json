@@ -1,0 +1,15 @@
+{
+	"status" : true,
+	"created_at" : "2016-09-18 10:00:00",
+	"msg" : "",
+	"item" : [
+		{
+			"id" : 8,
+			"title" : "Office Room 8",
+			"image" : "Office8.jpg",
+			"desc" : "Office Room 8 merupakan salah satu virtual office yang terletak di daerah kasablanka Jakarta. Dengan dua ruangan dengan design yang modern yaitu Elegan room dan Art room, Office Room 8 sangat cocok untuk dijadikan tempat bekerja dengan jumlah peserta maximum 20 orang.",
+			"rate" : 9.2,
+			"date_created" : "2016-09-18 12:00:00"
+		}
+	]
+}

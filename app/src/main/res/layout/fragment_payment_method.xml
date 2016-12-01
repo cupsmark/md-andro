@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/base_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/fragment_payment_method_topbar"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_close_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="9dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/fragment_payment_method_close"
+            android:layout_marginRight="10dp" />
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:text="@string/pagetitle_payment_method"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:id="@+id/fragment_payment_scrollview"
+        android:layout_below="@+id/fragment_payment_method_topbar"
+        android:layout_above="@+id/fragment_payment_method_pay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/base_blue_darker"
+                android:padding="5dp">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/base_white"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_detail_text_title"
+                    android:text="Choose Payment Method" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentLeft="true">
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:contentDescription="@string/app_name"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/icon_paypal"
+                            android:layout_marginRight="10dp"/>
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/base_text_normal"
+                            android:layout_gravity="center_vertical"
+                            android:text="Paypal"/>
+
+                    </LinearLayout>
+
+                    <com.meetdesk.view.UIButton
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/bg_radiobutton_payment_method"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/base_text_normal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"></RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentLeft="true">
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"
+                            android:contentDescription="@string/app_name"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/icon_linepay"
+                            android:layout_marginRight="10dp"/>
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/base_text_normal"
+                            android:layout_gravity="center_vertical"
+                            android:text="Line Pay"/>
+
+                    </LinearLayout>
+
+                    <com.meetdesk.view.UIButton
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/bg_radiobutton_payment_method"
+                        android:layout_alignParentRight="true"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/base_text_normal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"></RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/app_name"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_add_blue_darker"/>
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/base_text_normal"
+                        android:layout_gravity="center_vertical"
+                        android:text="Add Credit Card and Debit Card"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/base_text_normal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"></RelativeLayout>
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/base_black"
+                    android:text="We support the following payment methods:"/>
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="@color/base_text_normal"
+                    android:text="Linepay, Paypal, Google Wallet"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <com.meetdesk.view.UIButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:textColor="@color/base_white"
+        android:textSize="20sp"
+        android:text="Pay"
+        android:id="@+id/fragment_payment_method_pay"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/help_contact_topbar">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_back_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/help_contact_imagebutton_back"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:text="@string/pagetitle_contact"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <com.meetdesk.view.UIEditText
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:inputType="textMultiLine"
+            android:gravity="left|top"
+            android:hint="@string/help_contact_message_hint"
+            android:textColorHint="@color/base_text_normal"
+            android:textColor="@color/base_text_normal"
+            android:textSize="14sp"
+            android:id="@+id/help_contact_message"
+            android:background="@drawable/border_bottom_blue"
+            android:paddingBottom="10dp"
+            android:layout_marginBottom="15dp"/>
+
+        <com.meetdesk.view.UIButton
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_rounded_blue"
+            android:textColor="@color/base_white"
+            android:gravity="center"
+            android:id="@+id/help_contact_send"
+            android:text="@string/help_contact_submit"/>
+
+    </LinearLayout>
+
+</LinearLayout>

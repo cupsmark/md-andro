@@ -1,0 +1,87 @@
+{
+	"status" : true,
+	"created_at" : "2016-09-18 10:00:00",
+	"msg" : "",
+	"item" : [
+		{
+			"id" : 1,
+			"title" : "Office Room 1",
+			"image" : "Office1.jpg",
+			"desc" : "Berpusat di jantung kota Jakarta, Kantor ini menghadirkan konsep yang artistik dan modern. Juga fasilitas yang dibutuhkan agar karyawan dapat nyaman ketika sedang bekerja",
+			"rate" : 8.2,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 2,
+			"title" : "Office Room 2",
+			"image" : "Office2.jpg",
+			"desc" : "Akses yang dibutuhkan untuk menuju kantor sangat mudah. Karena dekat dengan stasiun dan juga jalan tol. Konsep dan ruangan yang ada didalam kantor ini pun bergaya modern",
+			"rate" : 8.8,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 3,
+			"title" : "Office Room 3",
+			"image" : "Office3.jpg",
+			"desc" : "Ruangan yang didesain dengan gaya artistik ini sangat nyaman untuk dipakai bekerja. Ruangan meeting dilengkapi fasilitas yang memudahkan suatu presentasi. ",
+			"rate" : 9.0,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 4,
+			"title" : "Office Room 4",
+			"image" : "Office4.jpg",
+			"desc" : "Ruangan desain yang modern sangat cocok juga nyaman dalam bekerja",
+			"rate" : 8.7,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 5,
+			"title" : "Office Room 5",
+			"image" : "Office5.jpg",
+			"desc" : "Untuk anda yang ingin mencari ruang kerja yang nyaman di Jakarta Barat, mungkin anda bisa memilih Office Room 5. Desain ruangan yang menarik sehingga membuat nyaman anda dalam bekerja",
+			"rate" : 8.4,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 6,
+			"title" : "Office Room 6",
+			"image" : "Office6.jpg",
+			"desc" : "Dengan ruangan dengan design yang modern dan futuristik, Office Room 6 sangat cocok untuk anda yang membutuhkan suasana bekerja yang berbeda",
+			"rate" : 9.5,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 7,
+			"title" : "Office Room 7",
+			"image" : "Office7.jpg",
+			"desc" : "Office Room 7 merupakan perwujudan desain yang unik dan elegan yang terletak strategis di salah satu bangunan paling terkenal di jantung kota Jakarta, yaitu Lorem Ipsum Building.",
+			"rate" : 8.9,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 8,
+			"title" : "Office Room 8",
+			"image" : "Office8.jpg",
+			"desc" : "Office Room 8 merupakan salah satu virtual office yang terletak di daerah kasablanka Jakarta. Dengan dua ruangan dengan design yang modern yaitu Elegan room dan Art room, Office Room 8 sangat cocok untuk dijadikan tempat bekerja dengan jumlah peserta maximum 20 orang.",
+			"rate" : 9.2,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 9,
+			"title" : "Office Room 9",
+			"image" : "Office9.jpg",
+			"desc" : " Office Room 9 Jakarta mempunyai lima ruang meeting dengan luas yang beragam. Daya tampung ruangan di Office Room 9 Jakarta mulai dari 20 orang hingga 150 orang.",
+			"rate" : 9.5,
+			"date_created" : "2016-09-18 12:00:00"
+		},
+		{
+			"id" : 10,
+			"title" : "Office Room 10",
+			"image" : "Office10.jpg",
+			"desc" : "Apabila Anda adalah pemilik start-up ataupun perusahaan yang berbasis di daerah Slipi dan sekitarnya, memilih Office Room 10 ini sebagai tempat kerja Anda adalah keputusan yang tepat. Kapasitas ruangan yang disediakan Office Room 10 ini sangat beragam dan tentunya dapat memenuhi kebutuhan Anda.",
+			"rate" : 9.3,
+			"date_created" : "2016-09-18 12:00:00"
+		}
+	]
+}
