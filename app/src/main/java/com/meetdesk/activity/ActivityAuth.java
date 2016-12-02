@@ -69,6 +69,7 @@ public class ActivityAuth extends BaseActivity{
         if(!fragmentSrc.isAdded())
         {
             fragmentSrc.setParameter(parameter);
+
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left);
