@@ -1,15 +1,24 @@
 package com.meetdesk.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.meetdesk.BaseActivity;
 import com.meetdesk.R;
 import com.meetdesk.controller.ControllerSetup;
 import com.meetdesk.helper.HelperGeneral;
 import com.meetdesk.model.PrefAuthentication;
+
+import io.fabric.sdk.android.Fabric;
 
 public class Intro extends BaseActivity {
 
@@ -18,13 +27,14 @@ public class Intro extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_intro);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        launch();
+        getPermissionReadPhoneState();
     }
 
     private void launch()
@@ -85,11 +95,50 @@ public class Intro extends BaseActivity {
                 else
                 {
                     i = new Intent(Intro.this, ActivityAuth.class);
+                    i.putExtra("isLogout", false);
                 }
                 startActivity(i);
                 finish();
 
             }
         }.execute();
+    }
+
+    private void getPermissionReadPhoneState()
+    {
+        if(Build.VERSION.SDK_INT >= 23)
+        {
+            if(ContextCompat.checkSelfPermission(Intro.this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED)
+            {
+                launch();
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(Intro.this, new String[]{Manifest.permission.READ_PHONE_STATE}, 112);
+            }
+        }
+        else
+        {
+            launch();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode)
+        {
+            case 112:{
+                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    launch();
+                }
+                else
+                {
+                    Toast.makeText(Intro.this, "No Allowed Permission", Toast.LENGTH_SHORT).show();
+                    System.exit(0);
+                }
+            }
+        }
     }
 }

@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/base_white">
 
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone">
+        android:visibility="invisible">
 
         <fragment
             android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:id="@+id/profile_edit_map_hidden"
             android:name="com.google.android.gms.maps.SupportMapFragment" />
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -346,7 +346,7 @@
                         android:textColor="@color/base_black"
                         android:background="@android:color/transparent"
                         android:inputType="text"
-                        android:gravity="left|center_vertical"
+                        android:gravity="left|top"
                         android:id="@+id/profile_edit_about"/>
 
                 </LinearLayout>

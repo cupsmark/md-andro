@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class ControllerProduct {
 
     Context mContext;
-    ArrayList<String> dataID, dataTitle, dataImage, dataDesc, dataRate, dataDate;
+    ArrayList<String> dataID, dataTitle, dataImage, dataDesc, dataRate, dataDate, dataUserID, dataUserName;
     String[] field, value;
     boolean success = false;
     String msg, target_id, token;
@@ -33,6 +33,8 @@ public class ControllerProduct {
         dataImage = new ArrayList<String>();
         dataRate = new ArrayList<String>();
         dataDate = new ArrayList<String>();
+        dataUserID = new ArrayList<String>();
+        dataUserName = new ArrayList<String>();
         msg = "";
         target_id = "0";
         token = "";
@@ -147,6 +149,8 @@ public class ControllerProduct {
                             dataImage.add(objectItem.getString("image"));
                             dataRate.add(objectItem.getString("rate"));
                             dataDate.add(objectItem.getString("date_created"));
+                            dataUserID.add(objectItem.getString("users"));
+                            dataUserName.add(objectItem.getString("usersname"));
                         }
                         success = true;
                     }
@@ -283,8 +287,7 @@ public class ControllerProduct {
 
     public void executeWishAdd()
     {
-        if(HelperGeneral.checkConnection(mContext))
-        {
+        if(HelperGeneral.checkConnection(mContext)) {
             String baseUrl = HelperNative.getURL(11180);
             String response = HelperGeneral.postJSON(baseUrl, field, value);
             if(response != null)
@@ -386,6 +389,16 @@ public class ControllerProduct {
         return this.dataDate;
     }
 
+    public ArrayList<String> getDataUserID()
+    {
+        return dataUserID;
+    }
+
+    public ArrayList<String> getDataUserName()
+    {
+        return dataUserName;
+    }
+
     public boolean getSuccess()
     {
         return this.success;
@@ -400,4 +413,5 @@ public class ControllerProduct {
     {
         return o;
     }
+
 }

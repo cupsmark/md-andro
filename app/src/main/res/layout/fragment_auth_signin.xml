@@ -119,16 +119,15 @@
                 android:paddingBottom="15dp"/>
 
 
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerInside"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/bg_button_google"
-                android:background="@android:color/transparent"
+            <com.google.android.gms.common.SignInButton
                 android:id="@+id/auth_signin_button_google"
-                android:visibility="gone"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"/>
 
         </LinearLayout>
 

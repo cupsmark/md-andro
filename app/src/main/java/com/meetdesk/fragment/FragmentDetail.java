@@ -41,7 +41,7 @@ public class FragmentDetail extends BaseFragment {
     ImageView imageviewImage;
     UIText pagetitle, rateValue, viewDesc;
     LinearLayout featureWifi, featureBreakfast, featureParking;
-    String selectedID = "0",dataID, dataTitle, dataImage, dataDesc, dataRate;
+    String selectedID = "0",dataID, dataTitle, dataImage, dataDesc, dataRate, dataUserID, dataUsername;
     UIButton buttonNext;
     Map<String, String> param;
     int widthScreen;
@@ -131,6 +131,8 @@ public class FragmentDetail extends BaseFragment {
                     dataImage = product.getDataImage().get(0);
                     dataRate = product.getDataRate().get(0);
                     dataDesc = product.getDataDesc().get(0);
+                    dataUserID = product.getDataUserID().get(0);
+                    dataUsername = product.getDataUserName().get(0);
                 }
                 else
                 {
@@ -169,7 +171,8 @@ public class FragmentDetail extends BaseFragment {
                         public void onClick(View v) {
                             Map<String, String> param = new HashMap<String, String>();
                             param.put("new", "1");
-                            param.put("user", "User 1");
+                            param.put("user", dataUsername);
+                            param.put("target_id", selectedID);
                             FragmentInboxNew inboxNew = new FragmentInboxNew();
                             iFragment.onNavigate(inboxNew, param);
                         }

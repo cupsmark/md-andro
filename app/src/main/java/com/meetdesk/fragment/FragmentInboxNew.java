@@ -1,6 +1,7 @@
 package com.meetdesk.fragment;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,7 +16,11 @@ import android.widget.ImageView;
 import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
 import com.meetdesk.R;
+import com.meetdesk.controller.ControllerGeneral;
 import com.meetdesk.helper.HelperGeneral;
+import com.meetdesk.helper.HelperNative;
+import com.meetdesk.model.PrefAuthentication;
+import com.meetdesk.util.EndlessRecyclerViewScrollListener;
 import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.view.UICircleImage;
 import com.meetdesk.view.UICircleImageView;
@@ -42,12 +47,12 @@ public class FragmentInboxNew extends BaseFragment{
     ImageButton imagebuttonBack, imagebuttonSend;
     RecyclerView recycler;
     Map<String, String> param;
-    String isNew = "1", users = "", titleMessage = "";
-    ArrayList<String> dataID, dataDate, dataImage, dataMessage;
-    ArrayList<Boolean> dataIsSelf;
+    String isNew = "1", users = "", titleMessage = "", targetID = "", targetField = "";
+    ArrayList<String> dataID, dataDate, dataImage, dataMessage, dataIsSelf;
     LazyImageLoader imageLoader;
     InboxNewAdapter adapter;
     UIEditText editMessage;
+    int l = 10, o = 0;
 
     @Nullable
     @Override
@@ -85,7 +90,7 @@ public class FragmentInboxNew extends BaseFragment{
         dataDate = new ArrayList<String>();
         dataImage = new ArrayList<String>();
         dataMessage = new ArrayList<String>();
-        dataIsSelf = new ArrayList<Boolean>();
+        dataIsSelf = new ArrayList<String>();
         adapter = new InboxNewAdapter();
         imageLoader = new LazyImageLoader(activity);
         pagetitle = (UIText) activity.findViewById(R.id.inbox_new_pagetitle);
@@ -116,6 +121,12 @@ public class FragmentInboxNew extends BaseFragment{
         recycler.setLayoutManager(recycleLayoutManager);
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setAdapter(adapter);
+        recycler.addOnScrollListener(new EndlessRecyclerViewScrollListener(recycleLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                getData(false);
+            }
+        });
         recycler.addOnItemTouchListener(new HelperGeneral.RecyclerTouchListener(activity, recycler, new HelperGeneral.ClickListener() {
             @Override
             public void onClick(View view, int position) {
@@ -130,6 +141,8 @@ public class FragmentInboxNew extends BaseFragment{
 
         if(isNew.equals("1"))
         {
+            targetField = "pid";
+            targetID = param.get("target_id");
             pagetitle.setText(activity.getResources().getString(R.string.pagetitle_inbox_new));
             targetCaption.setVisibility(View.VISIBLE);
             targetCaption.setText("To : ");
@@ -137,64 +150,134 @@ public class FragmentInboxNew extends BaseFragment{
         }
         else
         {
+            targetField = "mid";
+            targetID = param.get("target_id");
             titleMessage = param.get("title");
             pagetitle.setText(users);
             targetCaption.setVisibility(View.GONE);
             targetValue.setText(titleMessage);
-            getData();
         }
 
+        getData(true);
     }
 
-    private void getData()
+    private void getData(final boolean firstLoad)
     {
-        dataID.add("1");
-        dataID.add("2");
-        dataID.add("3");
-        dataID.add("4");
-        dataID.add("5");
+        new AsyncTask<Void, Integer, String>()
+        {
+            boolean success = false;
+            ArrayList<String> tempID, tempDate, tempImage, tempMessage, tempIsSelf;
 
-        dataImage.add("tom.jpg");
-        dataImage.add("sample_avatar.jpg");
-        dataImage.add("tom.jpg");
-        dataImage.add("sample_avatar.jpg");
-        dataImage.add("tom.jpg");
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                if(firstLoad)
+                {
+                    o = 0;
+                }
+                tempID = new ArrayList<String>();
+                tempDate = new ArrayList<String>();
+                tempImage = new ArrayList<String>();
+                tempMessage = new ArrayList<String>();
+                tempIsSelf = new ArrayList<String>();
+            }
 
-        dataIsSelf.add(false);
-        dataIsSelf.add(true);
-        dataIsSelf.add(false);
-        dataIsSelf.add(true);
-        dataIsSelf.add(false);
+            @Override
+            protected String doInBackground(Void... params) {
+                PrefAuthentication authentication = new PrefAuthentication(activity);
+                ControllerGeneral general = new ControllerGeneral(activity);
+                general.setToken(authentication.getKeyUserToken());
+                general.setL((l));
+                general.setO(o);
+                general.setTargetField(targetField);
+                general.setTarget(targetID);
+                general.executeListMessageDetail();
+                if(general.getSuccess())
+                {
+                    success = true;
+                    tempID.addAll(general.getMessageDetailID());
+                    tempDate.addAll(general.getMessageDetailDate());
+                    tempImage.addAll(general.getMessageDetailImage());
+                    tempMessage.addAll(general.getMessageDetailContent());
+                    tempIsSelf.addAll(general.getMessageDetailIsSelf());
+                    o = general.getOffset();
+                }
+                return "";
+            }
 
-        dataDate.add("2016-10-01 11:05:00");
-        dataDate.add("2016-10-01 16:30:00");
-        dataDate.add("2016-09-20 08:00:00");
-        dataDate.add("2016-09-20 10:00:00");
-        dataDate.add("2016-09-20 12:00:00");
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                if(success)
+                {
+                    if(tempID.size() > 0)
+                    {
+                        for(int i = 0;i < tempID.size();i++)
+                        {
+                            dataID.add(tempID.get(i));
+                            dataDate.add(tempDate.get(i));
+                            dataImage.add(tempImage.get(i));
+                            dataMessage.add(tempMessage.get(i));
+                            dataIsSelf.add(tempIsSelf.get(i));
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        }.execute();
 
-        dataMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-        dataMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-        dataMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-        dataMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-        dataMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-
-        adapter.notifyDataSetChanged();
     }
 
     private void addNewMessage()
     {
-        int newID = dataID.size() + 1;
-        Calendar c = Calendar.getInstance();
-        Date date = c.getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String strDate = sdf.format(date);
-        dataID.add(Integer.toString(newID));
-        dataDate.add(strDate);
-        dataImage.add("sample_avatar.jpg");
-        dataIsSelf.add(true);
-        dataMessage.add(editMessage.getText().toString());
-        adapter.notifyDataSetChanged();
-        editMessage.getText().clear();
+        new AsyncTask<Void, Integer, String>()
+        {
+            boolean success = false;
+            String msg,tempID, tempDate, tempImage, tempIsSelf, tempMessage, valueMessage, valueAvatar;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                valueMessage = editMessage.getText().toString();
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                PrefAuthentication authentication = new PrefAuthentication(activity);
+                valueAvatar = authentication.getKeyUserAvatar();
+                String[] field = new String[]{"token", "message", "param_field", "param_value"};
+                String[] value = new String[]{authentication.getKeyUserToken(), valueMessage, targetField, targetID};
+                ControllerGeneral general = new ControllerGeneral(activity);
+                general.setPostParameter(field, value);
+                general.executeAddMessage();
+                if(general.getSuccess())
+                {
+                    success = true;
+                }
+                msg = general.getMessage();
+                return "";
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                if(success)
+                {
+                    int newID = dataID.size() + 1;
+                    Calendar c = Calendar.getInstance();
+                    Date date = c.getTime();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String strDate = sdf.format(date);
+                    dataID.add(Integer.toString(newID));
+                    dataDate.add(strDate);
+                    dataImage.add(valueAvatar);
+                    dataIsSelf.add("1");
+                    dataMessage.add(editMessage.getText().toString());
+                    adapter.notifyDataSetChanged();
+                    editMessage.getText().clear();
+                }
+            }
+        }.execute();
     }
 
 
@@ -225,7 +308,7 @@ public class FragmentInboxNew extends BaseFragment{
 
         @Override
         public void onBindViewHolder(final InboxNewViewHolder holder, int position) {
-            if(dataIsSelf.get(position))
+            if(dataIsSelf.get(position).equals("1"))
             {
 
             }
@@ -237,7 +320,7 @@ public class FragmentInboxNew extends BaseFragment{
             String date = HelperGeneral.getDefaultDateFormat(dataDate.get(position));
             holder.textDesc.setText(desc);
             holder.textTime.setText(date);
-            imageLoader.showImage(HelperGeneral.getAssetsPath("images/"+dataImage.get(position)), holder.viewImage);
+            imageLoader.showImage(HelperNative.getURL(11171) + dataImage.get(position), holder.viewImage);
         }
 
 

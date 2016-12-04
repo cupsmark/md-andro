@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -31,16 +32,17 @@ import java.util.List;
 import java.util.Map;
 import com.facebook.FacebookSdk;
 
+import io.fabric.sdk.android.Fabric;
+
 public class ActivityAuth extends BaseActivity{
 
-    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_auth);
         FacebookSdk.sdkInitialize(getApplicationContext());
-        callbackManager = CallbackManager.Factory.create();
     }
 
     @Override
@@ -83,11 +85,16 @@ public class ActivityAuth extends BaseActivity{
         List<Fragment> lists = getSupportFragmentManager().getFragments();
         for(int i = lists.size() - 1;i > 0;i--)
         {
-            BaseFragment fragment = (BaseFragment) lists.get(i);
-            if(fragment != null)
+            try {
+                BaseFragment fragment = (BaseFragment) lists.get(i);
+                if (fragment != null) {
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right).remove(fragment).commit();
+                    return false;
+                }
+            }catch (Exception ex)
             {
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right).remove(fragment).commit();
-                return false;
+                ex.printStackTrace();
+                return true;
             }
         }
         return true;
@@ -96,7 +103,6 @@ public class ActivityAuth extends BaseActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

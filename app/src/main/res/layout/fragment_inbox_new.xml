@@ -97,7 +97,8 @@
             android:src="@drawable/icon_inbox_new_attach"
             android:layout_alignParentLeft="true"
             android:padding="10dp"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:visibility="gone"/>
 
         <com.meetdesk.view.UIEditText
             android:layout_width="match_parent"

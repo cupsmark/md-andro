@@ -133,21 +133,28 @@ public class FragmentAuthSignUp extends BaseFragment {
     private void showDateDialog()
     {
         Calendar c = Calendar.getInstance();
-        int y = c.get(Calendar.YEAR);
+        final int y = c.get(Calendar.YEAR);
         int m = c.get(Calendar.MONTH);
         int d = c.get(Calendar.DAY_OF_MONTH);
         dateDialog = new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                Calendar newDate = Calendar.getInstance();
-                newDate.set(year, monthOfYear, dayOfMonth);
-                SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMM yyyy");
-                String newDate2 = sdf2.format(newDate.getTime());
+                if(year < (y - 10))
+                {
+                    Calendar newDate = Calendar.getInstance();
+                    newDate.set(year, monthOfYear, dayOfMonth);
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("dd MMM yyyy");
+                    String newDate2 = sdf2.format(newDate.getTime());
 
-                SimpleDateFormat sdfOrigin = new SimpleDateFormat("yyyy-MM-dd");
-                String dateOrigin = sdfOrigin.format(newDate.getTime());
-                birthdate = dateOrigin;
-                buttonBirthday.setText(newDate2);
+                    SimpleDateFormat sdfOrigin = new SimpleDateFormat("yyyy-MM-dd");
+                    String dateOrigin = sdfOrigin.format(newDate.getTime());
+                    birthdate = dateOrigin;
+                    buttonBirthday.setText(newDate2);
+                }
+                else
+                {
+                    Toast.makeText(activity, "This app required age minimum 10 years old. Please select your valid birthdate.", Toast.LENGTH_LONG).show();
+                }
                 dateDialog.dismiss();
             }
         }, y, m, d);
@@ -178,8 +185,8 @@ public class FragmentAuthSignUp extends BaseFragment {
 
             @Override
             protected String doInBackground(Void... params) {
-                String[] field = new String[]{"token", "fullname", "email", "password", "gender", "birthdate"};
-                String[] value = new String[]{HelperGeneral.getDeviceID(activity), fullname, email, password, Integer.toString(gender), birthdate};
+                String[] field = new String[]{"token", "fullname", "email", "password", "gender", "birthdate", "devices_id"};
+                String[] value = new String[]{HelperGeneral.getDeviceID(activity), fullname, email, password, Integer.toString(gender), birthdate, HelperGeneral.getDeviceID(activity)};
                 ControllerAuthentication authentication = new ControllerAuthentication(activity);
                 authentication.setParameter(field, value);
                 authentication.doRegister();
@@ -198,11 +205,11 @@ public class FragmentAuthSignUp extends BaseFragment {
                 {
                     dialog.dismiss();
                 }
+                Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
                 if(success)
                 {
-
+                    activity.onBackPressed();
                 }
-                Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
             }
         }.execute();
     }

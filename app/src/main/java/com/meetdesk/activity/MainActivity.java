@@ -6,28 +6,33 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
+import com.crashlytics.android.Crashlytics;
 import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
 import com.meetdesk.R;
 import com.meetdesk.fragment.FragmentHome;
+import com.meetdesk.helper.HelperGeneral;
 import com.meetdesk.view.UIDialogConfirm;
 
 import java.util.List;
 import java.util.Map;
+
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
+        addFragmentHome();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         getMenu().setSlidingEnabled(false);
-        addFragmentHome();
     }
 
     private void addFragmentHome()
@@ -71,6 +76,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        HelperGeneral.closeKeyboard(MainActivity.this);
         if(onBack())
         {
             showDialogExit();

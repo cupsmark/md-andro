@@ -1,6 +1,7 @@
 package com.meetdesk.fragment;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,7 +16,10 @@ import android.widget.ImageView;
 import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
 import com.meetdesk.R;
+import com.meetdesk.controller.ControllerGeneral;
 import com.meetdesk.helper.HelperGeneral;
+import com.meetdesk.model.PrefAuthentication;
+import com.meetdesk.util.EndlessRecyclerViewScrollListener;
 import com.meetdesk.view.UIText;
 
 import java.text.ParseException;
@@ -41,6 +45,7 @@ public class FragmentInbox extends BaseFragment {
     ArrayList<String> inboxID, inboxTitle, inboxUser, inboxDate, inboxMessage;
     ArrayList<Boolean> inboxNotif, inboxShowGroupDate;
     InboxAdapter adapter;
+    int l = 10, o = 0;
 
     @Nullable
     @Override
@@ -65,7 +70,7 @@ public class FragmentInbox extends BaseFragment {
         if(activity != null)
         {
             init();
-            getData();
+            getData(true);
         }
     }
 
@@ -87,10 +92,16 @@ public class FragmentInbox extends BaseFragment {
         recycler.setLayoutManager(recycleLayoutManager);
         recycler.setItemAnimator(new DefaultItemAnimator());
         recycler.setAdapter(adapter);
+        recycler.addOnScrollListener(new EndlessRecyclerViewScrollListener(recycleLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                getData(false);
+            }
+        });
         recycler.addOnItemTouchListener(new HelperGeneral.RecyclerTouchListener(activity, recycler, new HelperGeneral.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                launchInboxNew(inboxUser.get(position), inboxTitle.get(position));
+                launchInboxNew(inboxUser.get(position), inboxTitle.get(position), inboxID.get(position));
             }
 
             @Override
@@ -106,62 +117,87 @@ public class FragmentInbox extends BaseFragment {
         });
     }
 
-    private void launchInboxNew(String user, String title)
+    private void launchInboxNew(String user, String title, String mid)
     {
         Map<String, String> param = new HashMap<String, String>();
         param.put("new", "0");
         param.put("user", user);
+        param.put("target_id", mid);
         param.put("title", title);
         FragmentInboxNew inboxNew = new FragmentInboxNew();
         iFragment.onNavigate(inboxNew, param);
     }
 
 
-    private void getData()
+    private void getData(final boolean firstLoad)
     {
-        inboxID.add("1");
-        inboxID.add("2");
-        inboxID.add("3");
-        inboxID.add("4");
-        inboxID.add("5");
+        new AsyncTask<Void, Integer, String>()
+        {
+            boolean success = false;
+            ArrayList<String> tempID, tempTitle, tempUser,tempDate, tempContent;
+            ArrayList<Boolean> tempShowGroup, tempIsNotif;
 
-        inboxUser.add("User 1");
-        inboxUser.add("User 2");
-        inboxUser.add("User 1");
-        inboxUser.add("User 2");
-        inboxUser.add("User 1");
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                if(firstLoad)
+                {
+                    o = 0;
+                }
+                tempID = new ArrayList<String>();
+                tempDate = new ArrayList<String>();
+                tempTitle = new ArrayList<String>();
+                tempUser = new ArrayList<String>();
+                tempContent = new ArrayList<String>();
+                tempShowGroup = new ArrayList<Boolean>();
+                tempIsNotif = new ArrayList<Boolean>();
+            }
 
-        inboxTitle.add("Workspace Info 1");
-        inboxTitle.add("Workspace Info 2");
-        inboxTitle.add("Workspace Info 3");
-        inboxTitle.add("Workspace Info 4");
-        inboxTitle.add("Workspace Info 5");
+            @Override
+            protected String doInBackground(Void... params) {
+                PrefAuthentication authentication = new PrefAuthentication(activity);
+                ControllerGeneral general = new ControllerGeneral(activity);
+                general.setToken(authentication.getKeyUserToken());
+                general.setL((l));
+                general.setO(o);
+                general.executeListMessage();
+                if(general.getSuccess())
+                {
+                    success = true;
+                    tempID.addAll(general.getInboxID());
+                    tempDate.addAll(general.getInboxDate());
+                    tempUser.addAll(general.getInboxUser());
+                    tempTitle.addAll(general.getInboxTitle());
+                    tempContent.addAll(general.getInboxMessage());
+                    tempShowGroup.addAll(general.getInboxShowGroupDate());
+                    tempIsNotif.addAll(general.getInboxNotif());
+                    o = general.getOffset();
+                }
+                return "";
+            }
 
-        inboxDate.add("2016-10-01 11:05:00");
-        inboxDate.add("2016-10-01 16:30:00");
-        inboxDate.add("2016-09-20 08:00:00");
-        inboxDate.add("2016-09-20 10:00:00");
-        inboxDate.add("2016-09-20 12:00:00");
-
-        inboxShowGroupDate.add(true);
-        inboxShowGroupDate.add(false);
-        inboxShowGroupDate.add(true);
-        inboxShowGroupDate.add(false);
-        inboxShowGroupDate.add(false);
-
-        inboxNotif.add(true);
-        inboxNotif.add(false);
-        inboxNotif.add(false);
-        inboxNotif.add(false);
-        inboxNotif.add(true);
-
-        inboxMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-        inboxMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-        inboxMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-        inboxMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-        inboxMessage.add("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id neque rhoncus, ultrices lectus at, dapibus neque. Suspendisse malesuada nibh a mauris luctus suscipit");
-
-        adapter.notifyDataSetChanged();
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                if(success)
+                {
+                    if(tempID.size() > 0)
+                    {
+                        for(int i = 0;i < tempID.size();i++)
+                        {
+                            inboxID.add(tempID.get(i));
+                            inboxDate.add(tempDate.get(i));
+                            inboxUser.add(tempUser.get(i));
+                            inboxTitle.add(tempTitle.get(i));
+                            inboxMessage.add(tempContent.get(i));
+                            inboxShowGroupDate.add(tempShowGroup.get(i));
+                            inboxNotif.add(tempIsNotif.get(i));
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        }.execute();
     }
 
     private String getInboxDateFormat(String date)

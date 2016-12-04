@@ -1,0 +1,62 @@
+{
+  "project_info": {
+    "project_number": "271250144661",
+    "firebase_url": "https://meetdesk-app.firebaseio.com",
+    "project_id": "meetdesk-app",
+    "storage_bucket": "meetdesk-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271250144661:android:2e41b2823b20569f",
+        "android_client_info": {
+          "package_name": "com.meetdesk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271250144661-h5tsjlnpr47j594rguu3t2qde6dqitk7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.meetdesk",
+            "certificate_hash": "2AFCDB7F881F3DFC6DA305DBB461E1F13B598FFF"
+          }
+        },
+        {
+          "client_id": "271250144661-1e3ld83364s40uhvm37g0kp653u4ajet.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "271250144661-stg22q6sm7n6hb1d8fivntu715tntfhi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSy8--5nGFh27qJXq9Ci7f1KD43VOJB9M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-88297429-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271250144661-1e3ld83364s40uhvm37g0kp653u4ajet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.Auth;
 import com.meetdesk.activity.ActivityAuth;
 import com.meetdesk.external.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.meetdesk.external.uil.core.assist.FailReason;
@@ -94,9 +96,20 @@ public class BaseActivity extends FragmentActivity implements HelperGeneral.Frag
         });
         slidemenuFullname.setText(authPref.getKeyUserFullname());
         slidemenuEmail.setText(authPref.getKeyUserEmail());
-        if(!HelperGeneral.checkInternalFile(authPref.getKeyUserAvatar(), BaseActivity.this))
+        String filename = authPref.getKeyUserAvatar();
+        if(!authPref.getKeyUserSource().equals("general"))
         {
-            imageLoader.showImage(HelperNative.getURL(11171) + authPref.getKeyUserAvatar(), circleImageAvatar, new ImageLoadingListener() {
+            filename = authPref.getKeyUserAvatar().substring(authPref.getKeyUserAvatar().lastIndexOf("/")+1);
+        }
+        if(!HelperGeneral.checkInternalFile(filename, BaseActivity.this))
+        {
+            String imageURL = HelperNative.getURL(11171) + authPref.getKeyUserAvatar();
+            if(!authPref.getKeyUserSource().equals("general"))
+            {
+                imageURL = authPref.getKeyUserAvatar();
+            }
+            final String finalFilename = filename;
+            imageLoader.showImage(imageURL, circleImageAvatar, new ImageLoadingListener() {
                 @Override
                 public void onLoadingStarted(String imageUri, View view) {
 
@@ -109,7 +122,7 @@ public class BaseActivity extends FragmentActivity implements HelperGeneral.Frag
 
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    HelperGeneral.saveBitmapInternal(authPref.getKeyUserAvatar(), BaseActivity.this, loadedImage);
+                    HelperGeneral.saveBitmapInternal(finalFilename, BaseActivity.this, loadedImage);
                     circleImageAvatar.setImageBitmap(loadedImage);
                 }
 
@@ -119,9 +132,9 @@ public class BaseActivity extends FragmentActivity implements HelperGeneral.Frag
                 }
             });
         }
-        if(HelperGeneral.checkInternalFile(authPref.getKeyUserAvatar(), BaseActivity.this))
+        if(HelperGeneral.checkInternalFile(filename, BaseActivity.this))
         {
-            imageLoader.showImage(HelperGeneral.getPrivatePath(authPref.getKeyUserAvatar(), BaseActivity.this), circleImageAvatar);
+            imageLoader.showImage(HelperGeneral.getPrivatePath(filename, BaseActivity.this), circleImageAvatar);
         }
     }
 
@@ -159,59 +172,43 @@ public class BaseActivity extends FragmentActivity implements HelperGeneral.Frag
         recyclerViewMenu.addOnItemTouchListener(new HelperGeneral.RecyclerTouchListener(getApplicationContext(), recyclerViewMenu, new HelperGeneral.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                if(dataID.get(position).equals("6"))
-                {
+                if (dataID.get(position).equals("6")) {
                     Map<String, String> param = new HashMap<String, String>();
                     FragmentTransaction transaction = new FragmentTransaction();
                     onNavigate(transaction, param);
                 }
-                if(dataID.get(position).equals("7"))
-                {
+                if (dataID.get(position).equals("7")) {
                     Map<String, String> param = new HashMap<String, String>();
                     FragmentProfile profile = new FragmentProfile();
                     onNavigate(profile, param);
                 }
-                if(dataID.get(position).equals("4"))
-                {
+                if (dataID.get(position).equals("4")) {
                     Map<String, String> param = new HashMap<String, String>();
                     FragmentRequestMerchant reqMerchant = new FragmentRequestMerchant();
                     onNavigate(reqMerchant, param);
                 }
-                if(dataID.get(position).equals("2"))
-                {
+                if (dataID.get(position).equals("2")) {
                     Map<String, String> param = new HashMap<String, String>();
                     FragmentInbox inbox = new FragmentInbox();
                     onNavigate(inbox, param);
                 }
-                if(dataID.get(position).equals("3"))
-                {
+                if (dataID.get(position).equals("3")) {
                     Map<String, String> param = new HashMap<String, String>();
                     FragmentWishList wishList = new FragmentWishList();
                     onNavigate(wishList, param);
                 }
-                if(dataID.get(position).equals("5"))
-                {
+                if (dataID.get(position).equals("5")) {
                     Map<String, String> param = new HashMap<String, String>();
                     FragmentHotlist hotlist = new FragmentHotlist();
                     onNavigate(hotlist, param);
                 }
-                if(dataID.get(position).equals("8"))
-                {
+                if (dataID.get(position).equals("8")) {
                     Map<String, String> param = new HashMap<String, String>();
                     FragmentHelp help = new FragmentHelp();
                     onNavigate(help, param);
                 }
-                if(dataID.get(position).equals("9"))
-                {
-                    PrefAuthentication authPreferences = new PrefAuthentication(BaseActivity.this);
-                    authPreferences.setIsLoggedIn(false);
-                    authPreferences.setDisplaySelectType(false);
-
-                    Toast.makeText(BaseActivity.this, "Logout Success", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(BaseActivity.this, ActivityAuth.class);
-                    startActivity(i);
-                    finish();
-
+                if (dataID.get(position).equals("9")) {
+                    backToAuth();
                 }
                 toggleMenu();
             }
@@ -221,6 +218,17 @@ public class BaseActivity extends FragmentActivity implements HelperGeneral.Frag
 
             }
         }));
+    }
+
+    private void backToAuth()
+    {
+        PrefAuthentication authentication = new PrefAuthentication(BaseActivity.this);
+        String source = authentication.getKeyUserSource();
+        Intent i = new Intent(BaseActivity.this, ActivityAuth.class);
+        i.putExtra("isLogout", true);
+        i.putExtra("userSource", source);
+        startActivity(i);
+        finish();
     }
 
     private void filldata()

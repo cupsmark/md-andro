@@ -22,6 +22,7 @@ import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.view.UICircleImageView;
 import com.meetdesk.view.UIText;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -91,6 +92,9 @@ public class FragmentProfile extends BaseFragment{
             public void onClick(View v) {
                 Map<String, String> param = new HashMap<String, String>();
                 FragmentProfileEdit edit = new FragmentProfileEdit();
+                ArrayList<BaseFragment> fragmentUpdate = new ArrayList<BaseFragment>();
+                fragmentUpdate.add(FragmentProfile.this);
+                edit.setFragmentUpdate(fragmentUpdate);
                 iFragment.onNavigate(edit, param);
             }
         });
@@ -103,7 +107,7 @@ public class FragmentProfile extends BaseFragment{
         textEmail.setText(auth.getKeyUserEmail());
         textPhone.setText(auth.getKeyUserPhone());
         textLocation.setText(auth.getKeyUserLocation());
-        textAbout.setText(auth.getKeyUserAbout());
+        textAbout.setText(auth.getKeyUserDesc());
         if(!HelperGeneral.checkInternalFile(auth.getKeyUserAvatar(), activity))
         {
             imageLoader.showImage(HelperNative.getURL(11171) + auth.getKeyUserAvatar(), imageviewAvatar, new ImageLoadingListener() {
@@ -133,6 +137,12 @@ public class FragmentProfile extends BaseFragment{
         {
             imageLoader.showImage(HelperGeneral.getPrivatePath(auth.getKeyUserAvatar(), activity), imageviewAvatar);
         }
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        getUser();
     }
 
     @Override

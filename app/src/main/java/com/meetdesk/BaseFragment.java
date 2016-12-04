@@ -2,6 +2,7 @@ package com.meetdesk;
 
 import android.support.v4.app.Fragment;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -12,7 +13,7 @@ public class BaseFragment extends Fragment {
     String TAG;
 
     Map<String, String> parameter;
-
+    ArrayList<BaseFragment> target;
     boolean isSliding = false;
 
     public BaseFragment()
@@ -55,4 +56,13 @@ public class BaseFragment extends Fragment {
 
     }
 
+    public void setFragmentUpdate(ArrayList<BaseFragment> target)
+    {
+        this.target = target;
+    }
+
+    public ArrayList<BaseFragment> getFragmentUpdate()
+    {
+        return this.target;
+    }
 }

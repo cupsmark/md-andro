@@ -24,6 +24,9 @@ public class PrefAuthentication {
     public static final String KEY_USER_GENDER = "gender";
     public static final String KEY_USER_LOCATION = "location";
     public static final String KEY_USER_ABOUT = "about";
+    public static final String KEY_USER_TOKEN_FCM = "token_fcm";
+    public static final String KEY_USER_SOURCE = "users_source";
+    public static final String KEY_USER_SOCIALID = "users_social_id";
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -111,6 +114,21 @@ public class PrefAuthentication {
         editor.putString(KEY_USER_ABOUT, about);
     }
 
+    public void setKeyUserTokenFcm(String tokenFCM)
+    {
+        editor.putString(KEY_USER_TOKEN_FCM, tokenFCM);
+    }
+
+    public void setKeyUserSource(String source)
+    {
+        editor.putString(KEY_USER_SOURCE, source);
+    }
+
+    public void setKeyUserSocialID(String socialID)
+    {
+        editor.putString(KEY_USER_SOCIALID, socialID);
+    }
+
     public void commit()
     {
         editor.commit();
@@ -189,5 +207,20 @@ public class PrefAuthentication {
     public String getKeyUserAbout()
     {
         return pref.getString(KEY_USER_ABOUT, "");
+    }
+
+    public String getKeyUserTokenFcm()
+    {
+        return pref.getString(KEY_USER_TOKEN_FCM, "");
+    }
+
+    public String getKeyUserSource()
+    {
+        return pref.getString(KEY_USER_SOURCE, "");
+    }
+
+    public String getKeyUserSocialID()
+    {
+        return pref.getString(KEY_USER_SOCIALID, "");
     }
 }

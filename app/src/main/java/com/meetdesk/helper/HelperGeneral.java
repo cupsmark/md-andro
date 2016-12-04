@@ -17,26 +17,35 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -525,17 +534,15 @@ public class HelperGeneral {
         }
     }
 
-    public static boolean checkGooglePlayServices(Context mContext){
-        int checkGooglePlayServices = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(mContext);
+    public static boolean checkGooglePlayServices(BaseActivity activity){
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int checkGooglePlayServices = apiAvailability.isGooglePlayServicesAvailable(activity);
         if (checkGooglePlayServices != ConnectionResult.SUCCESS) {
-		/*
-		* Google Play Services is missing or update is required
-		*  return code could be
-		* SUCCESS,
-		* SERVICE_MISSING, SERVICE_VERSION_UPDATE_REQUIRED,
-		* SERVICE_DISABLED, SERVICE_INVALID.
-		*/
-
+            if (apiAvailability.isUserResolvableError(checkGooglePlayServices)) {
+                apiAvailability.getErrorDialog(activity, checkGooglePlayServices, 9000).show();
+            } else {
+                activity.finish();
+            }
             return false;
         }
 
@@ -558,5 +565,214 @@ public class HelperGeneral {
             //e.printStackTrace();
         }
         return result;
+    }
+
+    public static void closeKeyboard(BaseActivity activity)
+    {
+        View v = activity.getCurrentFocus();
+        if(v != null)
+        {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+    }
+
+    public static boolean isLocationEnabled(Context context) {
+        int locationMode = 0;
+        String locationProviders;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            try {
+                locationMode = Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.LOCATION_MODE);
+
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+            return locationMode != Settings.Secure.LOCATION_MODE_OFF;
+
+        }else{
+            locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+            return !TextUtils.isEmpty(locationProviders);
+        }
+
+    }
+
+    public static String upload(String urls, String uriFile, String[] field, String[] value)
+    {
+        String res = "0";
+        String fileName = uriFile;
+        int serverResponseCode = 0;
+        HttpURLConnection conn = null;
+        DataOutputStream dos = null;
+        String lineEnd = "\r\n";
+        String twoHyphens = "--";
+        String boundary = "*****";
+        int bytesRead, bytesAvailable, bufferSize;
+        byte[] buffer;
+        int maxBufferSize = 1 * 1024 * 1024;
+        File sourceFile = new File(uriFile);
+
+        if (!sourceFile.isFile()) {
+            return "0";
+        }
+        else
+        {
+            try {
+                FileInputStream fileInputStream = new FileInputStream(sourceFile);
+                URL url = new URL(urls);
+
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setDoInput(true); // Allow Inputs
+                conn.setDoOutput(true); // Allow Outputs
+                conn.setUseCaches(false); // Don't use a Cached Copy
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Connection", "Keep-Alive");
+                conn.setRequestProperty("ENCTYPE", "multipart/form-data");
+                conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+                conn.setRequestProperty("file", fileName);
+
+                dos = new DataOutputStream(conn.getOutputStream());
+
+                for(int i = 0;i < field.length;i++){
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+                    dos.writeBytes("Content-Disposition: form-data; name=\""+field[i]+"\"" + lineEnd);
+                    dos.writeBytes(lineEnd);
+
+                    // assign value
+                    dos.writeBytes(value[i]);
+                    dos.writeBytes(lineEnd);
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+                }
+
+                dos.writeBytes(twoHyphens + boundary + lineEnd);
+                dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=" + fileName  + lineEnd);
+                dos.writeBytes(lineEnd);
+
+                bytesAvailable = fileInputStream.available();
+
+                bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                buffer = new byte[bufferSize];
+                bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+                while (bytesRead > 0) {
+
+                    dos.write(buffer, 0, bufferSize);
+                    bytesAvailable = fileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                    bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+
+                }
+
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+                serverResponseCode = conn.getResponseCode();
+                String serverResponseMessage = conn.getResponseMessage();
+
+                if(serverResponseCode == 200){
+
+                    res = serverResponseMessage;
+                }
+                fileInputStream.close();
+                dos.flush();
+                dos.close();
+
+                InputStream in = null;
+                try {
+                    in = conn.getInputStream();
+                    byte[] buffers = new byte[1024];
+                    int read;
+                    while ((read = in.read(buffers)) > 0) {
+                        res = new String(buffers, 0, read, "utf-8");
+                    }
+                }
+                catch (IOException es)
+                {
+                    es.printStackTrace();
+                    res = "0";
+                }
+                finally {
+                    in.close();
+                }
+
+            } catch (MalformedURLException ex) {
+                ex.printStackTrace();
+                res = "0";
+            } catch (Exception e) {
+                e.printStackTrace();
+                res = "0";
+            }
+            return res;
+
+        } // End else block
+    }
+
+    public static Bitmap ResizeBitmap(String url, int maxWidth, int maxHeight, boolean increase){
+
+        Bitmap bm = BitmapFactory.decodeFile(url);
+        int bmpWidth = bm.getWidth();
+        int bmpHeight = bm.getHeight();
+
+        int newWidth = 0;
+        int newHeight = 0;
+
+        if(bmpWidth < maxWidth || bmpHeight < maxHeight)
+        {
+            if(increase){
+                if(bmpWidth > bmpHeight)
+                {
+                    double ratio = ((double) maxWidth) / bmpWidth;
+                    newWidth = (int) (ratio * bmpWidth);
+                    newHeight = (int) (ratio * bmpHeight);
+                }
+                else
+                {
+                    double ratio = ((double) maxHeight) / bmpHeight;
+                    newWidth = (int) (ratio * bmpWidth);
+                    newHeight = (int) (ratio * bmpHeight);
+                }
+            }
+            else {
+                newWidth = bmpWidth;
+                newHeight = bmpHeight;
+            }
+
+
+        }
+        else
+        {
+            if(bmpWidth > bmpHeight)
+            {
+                double ratio = ((double) maxWidth) / bmpWidth;
+                newWidth = (int) (ratio * bmpWidth);
+                newHeight = (int) (ratio * bmpHeight);
+            }
+            else
+            {
+                double ratio = ((double) maxHeight) / bmpHeight;
+                newWidth = (int) (ratio * bmpWidth);
+                newHeight = (int) (ratio * bmpHeight);
+            }
+        }
+
+
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(bm, newWidth, newHeight, true);
+        return resizedBitmap;
+    }
+
+    public static String convertJSONToPathImage(String json)
+    {
+        String filename = "";
+        try {
+            JSONObject obj = new JSONObject(json);
+            if(obj.getBoolean("status"))
+            {
+                filename = obj.getString("filename");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return filename;
     }
 }
