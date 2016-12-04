@@ -19,6 +19,7 @@ public class ControllerProduct {
 
     Context mContext;
     ArrayList<String> dataID, dataTitle, dataImage, dataDesc, dataRate, dataDate, dataUserID, dataUserName;
+    ArrayList<String> facilityID, facilityTitle, facilityIcon;
     String[] field, value;
     boolean success = false;
     String msg, target_id, token;
@@ -35,6 +36,9 @@ public class ControllerProduct {
         dataDate = new ArrayList<String>();
         dataUserID = new ArrayList<String>();
         dataUserName = new ArrayList<String>();
+        facilityID = new ArrayList<String>();
+        facilityTitle = new ArrayList<String>();
+        facilityIcon = new ArrayList<String>();
         msg = "";
         target_id = "0";
         token = "";
@@ -151,6 +155,14 @@ public class ControllerProduct {
                             dataDate.add(objectItem.getString("date_created"));
                             dataUserID.add(objectItem.getString("users"));
                             dataUserName.add(objectItem.getString("usersname"));
+                            JSONArray arrFacility = objectItem.getJSONArray("facility");
+                            for(int a = 0;a < arrFacility.length();a++)
+                            {
+                                JSONObject objArrFacility = arrFacility.getJSONObject(a);
+                                facilityID.add(objArrFacility.getString("id"));
+                                facilityTitle.add(objArrFacility.getString("name"));
+                                facilityIcon.add(objArrFacility.getString("icon"));
+                            }
                         }
                         success = true;
                     }
@@ -397,6 +409,21 @@ public class ControllerProduct {
     public ArrayList<String> getDataUserName()
     {
         return dataUserName;
+    }
+
+    public ArrayList<String> getFacilityID()
+    {
+        return facilityID;
+    }
+
+    public ArrayList<String> getFacilityTitle()
+    {
+        return facilityTitle;
+    }
+
+    public ArrayList<String> getFacilityIcon()
+    {
+        return facilityIcon;
     }
 
     public boolean getSuccess()

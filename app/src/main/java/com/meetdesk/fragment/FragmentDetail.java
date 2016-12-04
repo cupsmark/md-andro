@@ -24,6 +24,7 @@ import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.view.UIButton;
 import com.meetdesk.view.UIText;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,8 +41,9 @@ public class FragmentDetail extends BaseFragment {
     ImageButton imagebuttonBack;
     ImageView imageviewImage;
     UIText pagetitle, rateValue, viewDesc;
-    LinearLayout featureWifi, featureBreakfast, featureParking;
+    LinearLayout linearFragmentFacility;
     String selectedID = "0",dataID, dataTitle, dataImage, dataDesc, dataRate, dataUserID, dataUsername;
+    ArrayList<String> facilityID, facilityTitle, facilityIcon;
     UIButton buttonNext;
     Map<String, String> param;
     int widthScreen;
@@ -85,22 +87,20 @@ public class FragmentDetail extends BaseFragment {
         param = getParameter();
         selectedID = param.get("dataID");
         imageLoader = new LazyImageLoader(activity);
+        facilityID = new ArrayList<String>();
+        facilityIcon = new ArrayList<String>();
+        facilityTitle = new ArrayList<String>();
         imagebuttonBack = (ImageButton) activity.findViewById(R.id.fragment_detail_imagebutton_back);
         pagetitle = (UIText) activity.findViewById(R.id.fragment_detail_text_title);
-        featureWifi = (LinearLayout) activity.findViewById(R.id.fragment_detail_feature_wifi);
-        featureBreakfast = (LinearLayout) activity.findViewById(R.id.fragment_detail_feature_breakfast);
-        featureParking = (LinearLayout) activity.findViewById(R.id.fragment_detail_feature_parking);
         imageviewImage = (ImageView) activity.findViewById(R.id.fragment_detail_image);
         rateValue = (UIText) activity.findViewById(R.id.fragment_detail_review_value);
         viewDesc = (UIText) activity.findViewById(R.id.fragment_detail_desc);
         buttonNext = (UIButton) activity.findViewById(R.id.fragment_detail_next_step);
         buttonSendMessage = (LinearLayout) activity.findViewById(R.id.detail_button_message);
         buttonAddToWishlist = (LinearLayout) activity.findViewById(R.id.detail_button_wishlist);
+        linearFragmentFacility = (LinearLayout) activity.findViewById(R.id.fragment_detail_linear_fragment_facility);
 
         widthScreen = HelperGeneral.getScreenSize(activity, "w");
-        featureWifi.getLayoutParams().width = widthScreen / 3;
-        featureBreakfast.getLayoutParams().width = widthScreen / 3;
-        featureParking.getLayoutParams().width = widthScreen / 3;
         imagebuttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,6 +115,15 @@ public class FragmentDetail extends BaseFragment {
         {
             boolean success = false;
             String msg;
+            ArrayList<String> tempFacID, tempFacTitle, tempFacIcon;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                tempFacID = new ArrayList<String>();
+                tempFacIcon = new ArrayList<String>();
+                tempFacTitle = new ArrayList<String>();
+            }
 
             @Override
             protected String doInBackground(Void... params) {
@@ -133,6 +142,10 @@ public class FragmentDetail extends BaseFragment {
                     dataDesc = product.getDataDesc().get(0);
                     dataUserID = product.getDataUserID().get(0);
                     dataUsername = product.getDataUserName().get(0);
+
+                    tempFacID.addAll(product.getFacilityID());
+                    tempFacTitle.addAll(product.getFacilityTitle());
+                    tempFacIcon.addAll(product.getFacilityIcon());
                 }
                 else
                 {
@@ -177,6 +190,7 @@ public class FragmentDetail extends BaseFragment {
                             iFragment.onNavigate(inboxNew, param);
                         }
                     });
+                    addViewFacility(tempFacID, tempFacTitle, tempFacIcon);
                     imageLoader.showImage(HelperNative.getURL(11171) + dataImage, imageviewImage);
                 }
                 else
@@ -235,4 +249,20 @@ public class FragmentDetail extends BaseFragment {
         }.execute();
     }
 
+    private void addViewFacility(ArrayList<String> tempID, ArrayList<String> tempTitle, ArrayList<String> tempIcon)
+    {
+        if(tempID.size() > 0)
+        {
+            facilityID.addAll(tempID);
+            facilityTitle.addAll(tempTitle);
+            facilityIcon.addAll(tempIcon);
+
+            FragmentDetailFacilityList facilityList = new FragmentDetailFacilityList();
+            facilityList.setDataID(facilityID);
+            facilityList.setDataIcon(facilityIcon);
+            facilityList.setDataTitle(facilityTitle);
+            facilityList.onUpdate();
+            getChildFragmentManager().beginTransaction().replace(R.id.fragment_detail_linear_fragment_facility, facilityList);
+        }
+    }
 }
