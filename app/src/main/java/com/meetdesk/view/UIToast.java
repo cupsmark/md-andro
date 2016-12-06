@@ -44,7 +44,6 @@ public class UIToast extends Toast {
         viewText.setPadding(20, 20, 20, 20);
         setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM, 0, 30);
         setDuration(Toast.LENGTH_LONG);
-        setDuration(5000);
         setView((View) viewText);
     }
 
