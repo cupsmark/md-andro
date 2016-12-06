@@ -8,19 +8,19 @@ import android.view.View;
 /**
  * Created by ekobudiarto on 12/4/16.
  */
-public class ViewSubViewPager extends ViewPager {
+public class UIViewPager extends ViewPager {
 
     private static final int MATCH_PARENT = 1073742592;
 
     private int currentPageNumber;
     private int pageCount;
 
-    public ViewSubViewPager(Context context) {
+    public UIViewPager(Context context) {
         super(context);
         prepareUI();
     }
 
-    public ViewSubViewPager(Context context, AttributeSet attrs) {
+    public UIViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         prepareUI();
     }

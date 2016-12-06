@@ -3,7 +3,6 @@ package com.meetdesk.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -26,7 +25,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -45,8 +43,10 @@ import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.view.UIButton;
 import com.meetdesk.view.UICircleImageView;
 import com.meetdesk.view.UIDialogConfirm;
+import com.meetdesk.view.UIDialogLoading;
 import com.meetdesk.view.UIEditText;
 import com.meetdesk.view.UIText;
+import com.meetdesk.view.UIToast;
 
 import java.io.File;
 import java.text.ParseException;
@@ -264,7 +264,7 @@ public class FragmentProfileEdit extends BaseFragment implements GoogleApiClient
                 }
                 else
                 {
-                    Toast.makeText(activity, "This app required age minimum 10 years old. Please select your valid birthdate.", Toast.LENGTH_LONG).show();
+                    new UIToast(activity, "This app required age minimum 10 years old. Please select your valid birthdate.").show();
                 }
                 dateDialog.dismiss();
             }
@@ -309,7 +309,7 @@ public class FragmentProfileEdit extends BaseFragment implements GoogleApiClient
         {
             boolean success = false;
             String msg;
-            ProgressDialog dialog;
+            UIDialogLoading dialog;
             String valueFullname, valuePassword, valueBirthdate,
                     valueGender, valuePhone, valueDesc,
                     valueLatitude, valueLongitude, valueLocation, valueMedia;
@@ -317,7 +317,7 @@ public class FragmentProfileEdit extends BaseFragment implements GoogleApiClient
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(activity);
+                dialog = new UIDialogLoading(activity);
                 dialog.setCancelable(false);
                 dialog.show();
 
@@ -383,7 +383,7 @@ public class FragmentProfileEdit extends BaseFragment implements GoogleApiClient
                     }
                     activity.onBackPressed();
                 }
-                Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+                new UIToast(activity, msg).show();
             }
         }.execute();
     }
@@ -424,7 +424,7 @@ public class FragmentProfileEdit extends BaseFragment implements GoogleApiClient
     {
         if(!HelperGeneral.isLocationEnabled(activity))
         {
-            Toast.makeText(activity, "Your GPS location is off. Please turn on your GPS Location", Toast.LENGTH_LONG).show();
+            new UIToast(activity, "Please turn on your GPS Location").show();
         }
     }
 

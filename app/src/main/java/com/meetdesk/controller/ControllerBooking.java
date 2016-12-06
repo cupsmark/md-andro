@@ -19,16 +19,20 @@ public class ControllerBooking {
 
     Context mContext;
     boolean success;
-    String msg;
+    String msg, token;
     String[] field, value;
     ArrayList<String> productID, productTitle, productImage, productDesc, productUser;
     ArrayList<String> packagePriceID, packagePriceTitle,packagePriceDesc, packagePriceDiscount, packagePriceValue;
+    ArrayList<String> bookingDetailID, bookingDetailDate, bookingDetailCode, bookingDetailAmount;
+    int l, o;
 
     public ControllerBooking(Context context)
     {
         this.mContext = context;
         success = false;
         msg = "";
+        l = 10;
+        o = 0;
         productID = new ArrayList<String>();
         productTitle = new ArrayList<String>();
         productImage = new ArrayList<String>();
@@ -39,12 +43,31 @@ public class ControllerBooking {
         packagePriceDesc = new ArrayList<String>();
         packagePriceDiscount = new ArrayList<String>();
         packagePriceValue = new ArrayList<String>();
+        bookingDetailID = new ArrayList<String>();
+        bookingDetailDate = new ArrayList<String>();
+        bookingDetailCode = new ArrayList<String>();
+        bookingDetailAmount = new ArrayList<String>();
     }
 
     public void setParameter(String[] field, String[] value)
     {
         this.field = field;
         this.value = value;
+    }
+
+    public void setL(int l)
+    {
+        this.l = l;
+    }
+
+    public void setO(int o)
+    {
+        this.o = o;
+    }
+
+    public void setToken(String token)
+    {
+        this.token = token;
     }
 
     public void executeCheckAvailability()
@@ -182,6 +205,8 @@ public class ControllerBooking {
         if(HelperGeneral.checkConnection(mContext))
         {
             String baseUrl = HelperNative.getURL(11195);
+            String[] field = new String[]{"token", "l", "o"};
+            String[] value = new String[]{token, String.valueOf(l), String.valueOf(o)};
             String fixedUrl = HelperGeneral.buildURL(baseUrl, field, value);
             fixedUrl = fixedUrl.replace(" ", "%20");
             String response = HelperGeneral.getJSON(fixedUrl);
@@ -195,16 +220,18 @@ public class ControllerBooking {
                         for(int i = 0;i < arr_item.length();i++)
                         {
                             JSONObject objectItem = arr_item.getJSONObject(i);
+                            bookingDetailID.add(objectItem.getString("id"));
                             productID.add(objectItem.getString("product_id"));
                             productTitle.add(objectItem.getString("product_title"));
                             productDesc.add(objectItem.getString("product_desc"));
-                            productImage.add(objectItem.getString("product_image"));
-                            productUser.add(objectItem.getString("product_users"));
+                            packagePriceID.add(objectItem.getString("package_id"));
                             packagePriceTitle.add(objectItem.getString("package_title"));
+                            bookingDetailDate.add(objectItem.getString("booking_date"));
+                            bookingDetailCode.add(objectItem.getString("booking_code"));
                             packagePriceDesc.add(objectItem.getString("package_desc"));
-                            packagePriceDiscount.add(objectItem.getString("package_discount"));
-                            packagePriceValue.add(objectItem.getString("package_price"));
+                            bookingDetailAmount.add(objectItem.getString("booking_amount"));
                         }
+                        o = l + o;
                         success = true;
                     }
                     else
@@ -256,6 +283,11 @@ public class ControllerBooking {
         return productUser;
     }
 
+    public ArrayList<String> getPackagePriceID()
+    {
+        return packagePriceID;
+    }
+
     public ArrayList<String> getPackagePriceTitle()
     {
         return packagePriceTitle;
@@ -276,7 +308,25 @@ public class ControllerBooking {
         return packagePriceValue;
     }
 
+    public ArrayList<String> getBookingDetailID()
+    {
+        return bookingDetailID;
+    }
 
+    public ArrayList<String> getBookingDetailDate()
+    {
+        return bookingDetailDate;
+    }
+
+    public ArrayList<String> getBookingDetailCode()
+    {
+        return bookingDetailCode;
+    }
+
+    public ArrayList<String> getBookingDetailAmount()
+    {
+        return bookingDetailAmount;
+    }
 
     public boolean getSuccess()
     {
@@ -288,4 +338,8 @@ public class ControllerBooking {
         return msg;
     }
 
+    public int getOffset()
+    {
+        return o;
+    }
 }

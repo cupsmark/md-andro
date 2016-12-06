@@ -465,10 +465,18 @@ public class HelperGeneral {
     }
 
     public static String getLimitedWords(String content, int limit) {
-        Pattern pattern = Pattern.compile("([\\S]+\\s*){1,"+Integer.toString(limit)+"}");
-        Matcher matcher = pattern.matcher(content);
-        matcher.find();
-        return matcher.group();
+        String result = "";
+        try {
+            Pattern pattern = Pattern.compile("([\\S]+\\s*){1," + Integer.toString(limit) + "}");
+            Matcher matcher = pattern.matcher(content);
+            matcher.find();
+            result = matcher.group();
+        }
+        catch (Exception ex)
+        {
+            result = content;
+        }
+        return result;
     }
 
     public static String convertStandardJSONString(String data_json){

@@ -2,7 +2,6 @@ package com.meetdesk.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.os.AsyncTask;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 
 import com.meetdesk.BaseActivity;
@@ -25,8 +23,10 @@ import com.meetdesk.controller.ControllerBooking;
 import com.meetdesk.helper.HelperGeneral;
 import com.meetdesk.model.PrefAuthentication;
 import com.meetdesk.view.UIButton;
+import com.meetdesk.view.UIDialogLoading;
 import com.meetdesk.view.UIEditText;
 import com.meetdesk.view.UIText;
+import com.meetdesk.view.UIToast;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.date.MonthAdapter;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -410,13 +410,13 @@ public class FragmentBookingForm extends BaseFragment {
         new AsyncTask<Void, Integer, String>()
         {
             boolean success = false;
-            ProgressDialog dialog;
+            UIDialogLoading dialog;
             String msg, valueDateStart, valueDateEnd, valueHourStart, valueHourEnd, valueUnit, valueMember;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(activity);
+                dialog = new UIDialogLoading(activity);
                 dialog.setCancelable(false);
                 dialog.show();
                 valueDateStart = selectedDateStart;
@@ -451,7 +451,7 @@ public class FragmentBookingForm extends BaseFragment {
                 {
                     dialog.dismiss();
                 }
-                Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+                new UIToast(activity, msg).show();
             }
         }.execute();
     }
@@ -514,7 +514,7 @@ public class FragmentBookingForm extends BaseFragment {
                 }
                 else
                 {
-                    Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+                    new UIToast(activity, msg).show();
                 }
             }
         }.execute();

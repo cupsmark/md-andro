@@ -1,7 +1,6 @@
 package com.meetdesk.fragment;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
@@ -26,7 +24,9 @@ import com.meetdesk.util.EndlessRecyclerViewScrollListener;
 import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.view.UIButton;
 import com.meetdesk.view.UIDialogConfirm;
+import com.meetdesk.view.UIDialogLoading;
 import com.meetdesk.view.UIText;
+import com.meetdesk.view.UIToast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -204,7 +204,7 @@ public class FragmentWishList extends BaseFragment {
                 }
                 else
                 {
-                    Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+                    new UIToast(activity, msg).show();
                 }
             }
         }.execute();
@@ -217,12 +217,12 @@ public class FragmentWishList extends BaseFragment {
 
             boolean success = false;
             String msg;
-            ProgressDialog dialog;
+            UIDialogLoading dialog;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(activity);
+                dialog = new UIDialogLoading(activity);
                 dialog.setCancelable(false);
                 dialog.show();
             }
@@ -264,7 +264,7 @@ public class FragmentWishList extends BaseFragment {
                     }
                     adapter.notifyDataSetChanged();
                 }
-                Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
+                new UIToast(activity, msg).show();
             }
         }.execute();
     }

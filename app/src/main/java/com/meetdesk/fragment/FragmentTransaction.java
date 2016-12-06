@@ -83,12 +83,12 @@ public class FragmentTransaction extends BaseFragment {
     {
         View tabHistory = LayoutInflater.from(activity).inflate(R.layout.tab_transaction, null, false);
         UIText textTabHistory = (UIText) tabHistory.findViewById(R.id.transaction_tab_item);
-        textTabHistory.setText("HISTORY");
+        textTabHistory.setText("BOOKING");
         tabLayout.getTabAt(0).setCustomView(tabHistory);
 
         View tabPending = LayoutInflater.from(activity).inflate(R.layout.tab_transaction, null, false);
         UIText textTabPending = (UIText) tabPending.findViewById(R.id.transaction_tab_item);
-        textTabPending.setText("PENDING");
+        textTabPending.setText("ORDER");
         tabLayout.getTabAt(1).setCustomView(tabPending);
     }
 

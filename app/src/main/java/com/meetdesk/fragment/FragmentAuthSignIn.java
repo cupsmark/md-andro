@@ -1,7 +1,6 @@
 package com.meetdesk.fragment;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,17 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -31,8 +26,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
 import com.meetdesk.R;
@@ -42,7 +35,9 @@ import com.meetdesk.helper.HelperGeneral;
 import com.meetdesk.model.PrefAuthentication;
 import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.view.UIButton;
+import com.meetdesk.view.UIDialogLoading;
 import com.meetdesk.view.UIEditText;
+import com.meetdesk.view.UIToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -130,12 +125,12 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
 
             @Override
             public void onCancel() {
-                Toast.makeText(activity, "Something wrong with this device. Please restart this application", Toast.LENGTH_SHORT).show();
+                new UIToast(activity, "Something wrong with this device. Please restart this application").show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(activity, "ERROR : " + error.getMessage().toString(), Toast.LENGTH_LONG).show();
+                new UIToast(activity, "ERROR : " + error.getMessage().toString()).show();
             }
         });
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
@@ -174,14 +169,14 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
         new AsyncTask<Void, Integer, String>()
         {
 
-            ProgressDialog dialog;
+            UIDialogLoading dialog;
             boolean success = false;
             String msg, username, password;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(activity);
+                dialog = new UIDialogLoading(activity);
                 dialog.setCancelable(false);
                 dialog.show();
 
@@ -218,7 +213,7 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
                     activity.startActivity(i);
                     activity.finish();
                 }
-                Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
+                new UIToast(activity, msg).show();
             }
         }.execute();
     }
@@ -252,7 +247,7 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
                             doLoginSocial(valueSend);
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(activity, "ERROR Server " + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                            new UIToast(activity, "ERROR Server " + e.getMessage().toString()).show();
                         }
                     }
                 });
@@ -314,12 +309,12 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
 
             boolean success = false;
             String msg;
-            ProgressDialog dialog;
+            UIDialogLoading dialog;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(activity);
+                dialog = new UIDialogLoading(activity);
                 dialog.setCancelable(false);
                 dialog.show();
             }
@@ -352,7 +347,7 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
                     activity.startActivity(i);
                     activity.finish();
                 }
-                Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
+                new UIToast(activity, msg).show();
             }
         }.execute();
     }
@@ -365,11 +360,11 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
             if(source.equals("facebook"))
             {
                 LoginManager.getInstance().logOut();
-                Toast.makeText(activity, "Logout Success", Toast.LENGTH_SHORT).show();
+                new UIToast(activity, "Logout Success").show();
             }
             else if(source.equals("google"))
             {
-                Toast.makeText(activity, "Logout Success", Toast.LENGTH_SHORT).show();
+                new UIToast(activity, "Logout Success").show();
                 /*Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
                     @Override
                     public void onResult(Status status) {
@@ -379,7 +374,7 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
             }
             else
             {
-                Toast.makeText(activity, "Logout Success", Toast.LENGTH_SHORT).show();
+                new UIToast(activity, "Logout Success").show();
                 PrefAuthentication authPreferences = new PrefAuthentication(activity);
                 authPreferences.setIsLoggedIn(false);
                 authPreferences.setDisplaySelectType(false);
@@ -395,6 +390,6 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        Toast.makeText(activity, "Error Connection : " + connectionResult.getErrorMessage().toString(), Toast.LENGTH_LONG).show();
+        new UIToast(activity, "Error Connection : " + connectionResult.getErrorMessage().toString()).show();
     }
 }

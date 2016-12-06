@@ -7,21 +7,21 @@ import android.widget.HorizontalScrollView;
 /**
  * Created by ekobudiarto on 12/4/16.
  */
-public class ViewHorizontallScroll extends HorizontalScrollView {
+public class UIHorizontallScroll extends HorizontalScrollView {
 
     Context mContext;
 
-    public ViewHorizontallScroll(Context context) {
+    public UIHorizontallScroll(Context context) {
         super(context);
         this.mContext = context;
     }
 
-    public ViewHorizontallScroll(Context context, AttributeSet attrs) {
+    public UIHorizontallScroll(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
     }
 
-    public ViewHorizontallScroll(Context context, AttributeSet attrs, int defStyleAttr) {
+    public UIHorizontallScroll(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
     }

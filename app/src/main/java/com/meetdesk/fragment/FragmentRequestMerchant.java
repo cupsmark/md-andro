@@ -1,7 +1,6 @@
 package com.meetdesk.fragment;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
@@ -18,7 +16,9 @@ import com.meetdesk.controller.ControllerGeneral;
 import com.meetdesk.helper.HelperGeneral;
 import com.meetdesk.model.PrefAuthentication;
 import com.meetdesk.view.UIButton;
+import com.meetdesk.view.UIDialogLoading;
 import com.meetdesk.view.UIEditText;
+import com.meetdesk.view.UIToast;
 
 /**
  * Created by ekobudiarto on 11/1/16.
@@ -92,13 +92,13 @@ public class FragmentRequestMerchant extends BaseFragment {
         {
             boolean success = false;
             String msg;
-            ProgressDialog dialog;
+            UIDialogLoading dialog;
             String valueEmail, valueAddress, valuePhone, valueName, valueAmenities, valueDetail, valueMessage;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(activity);
+                dialog = new UIDialogLoading(activity);
                 dialog.setCancelable(false);
                 dialog.show();
 
@@ -138,7 +138,7 @@ public class FragmentRequestMerchant extends BaseFragment {
                 {
                     activity.onBackPressed();
                 }
-                Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
+                new UIToast(activity, msg).show();
             }
         }.execute();
     }

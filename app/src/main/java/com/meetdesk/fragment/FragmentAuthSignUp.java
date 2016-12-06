@@ -2,7 +2,6 @@ package com.meetdesk.fragment;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
@@ -23,8 +21,10 @@ import com.meetdesk.controller.ControllerAuthentication;
 import com.meetdesk.helper.HelperGeneral;
 import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.view.UIButton;
+import com.meetdesk.view.UIDialogLoading;
 import com.meetdesk.view.UIEditText;
 import com.meetdesk.view.UIText;
+import com.meetdesk.view.UIToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -153,7 +153,8 @@ public class FragmentAuthSignUp extends BaseFragment {
                 }
                 else
                 {
-                    Toast.makeText(activity, "This app required age minimum 10 years old. Please select your valid birthdate.", Toast.LENGTH_LONG).show();
+                    UIToast toast = new UIToast(activity, "This app required age minimum 10 years old. Please select your valid birthdate.");
+                    toast.show();
                 }
                 dateDialog.dismiss();
             }
@@ -166,14 +167,14 @@ public class FragmentAuthSignUp extends BaseFragment {
         new AsyncTask<Void, Integer, String>()
         {
 
-            ProgressDialog dialog;
+            UIDialogLoading dialog;
             boolean success = false;
             String msg;
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                dialog = new ProgressDialog(activity);
+                dialog = new UIDialogLoading(activity);
                 dialog.setCancelable(false);
                 dialog.show();
 
@@ -205,7 +206,7 @@ public class FragmentAuthSignUp extends BaseFragment {
                 {
                     dialog.dismiss();
                 }
-                Toast.makeText(activity, msg, Toast.LENGTH_LONG).show();
+                new UIToast(activity, msg).show();
                 if(success)
                 {
                     activity.onBackPressed();

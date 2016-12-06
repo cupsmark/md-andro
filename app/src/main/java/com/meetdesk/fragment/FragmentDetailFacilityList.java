@@ -1,7 +1,6 @@
 package com.meetdesk.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -17,10 +16,9 @@ import com.meetdesk.helper.HelperGeneral;
 import com.meetdesk.helper.HelperNative;
 import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.view.UIText;
-import com.meetdesk.view.ViewHorizontallScroll;
+import com.meetdesk.view.UIHorizontallScroll;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Created by ekobudiarto on 12/4/16.
@@ -32,7 +30,7 @@ public class FragmentDetailFacilityList extends BaseFragment {
     BaseActivity activity;
     public static final String TAG_FRAGMENT_SETTINGS = "tag:fragment-settings";
 
-    ViewHorizontallScroll horizontalScroll;
+    UIHorizontallScroll horizontalScroll;
     ArrayList<String> fac_id, fac_title,fac_icon;
     LinearLayout horizontalScrollLinear;
     LazyImageLoader imageLoader;
@@ -69,7 +67,7 @@ public class FragmentDetailFacilityList extends BaseFragment {
     {
         imageLoader = new LazyImageLoader(activity);
         widthScreen = HelperGeneral.getScreenSize(activity, "w");
-        horizontalScroll = (ViewHorizontallScroll) activity.findViewById(R.id.fragment_detail_facility_list_horizontal);
+        horizontalScroll = (UIHorizontallScroll) activity.findViewById(R.id.fragment_detail_facility_list_horizontal);
         horizontalScrollLinear = (LinearLayout) activity.findViewById(R.id.fragment_detail_facility_list_linear);
     }
 

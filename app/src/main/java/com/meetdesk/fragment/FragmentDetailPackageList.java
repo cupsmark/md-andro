@@ -14,7 +14,7 @@ import com.meetdesk.R;
 import com.meetdesk.helper.HelperGeneral;
 import com.meetdesk.view.UIButton;
 import com.meetdesk.view.UIText;
-import com.meetdesk.view.ViewSubViewPager;
+import com.meetdesk.view.UIViewPager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ public class FragmentDetailPackageList extends BaseFragment {
     public static final String TAG_FRAGMENT_SETTINGS = "tag:fragment-settings";
 
     ArrayList<String> packageID, packageMasterID, packageMasterName, packageTitle, packagePrice, packageDiscount, packageDescription;
-    ViewSubViewPager viewPager;
+    UIViewPager viewPager;
     DetailPackageListAdapter adapter;
     Map<String, String> param;
     String product;
@@ -97,7 +97,7 @@ public class FragmentDetailPackageList extends BaseFragment {
         param = getParameter();
         product = param.get("product");
         adapter = new DetailPackageListAdapter();
-        viewPager = (ViewSubViewPager) activity.findViewById(R.id.fragment_detail_package_list_viewpager);
+        viewPager = (UIViewPager) activity.findViewById(R.id.fragment_detail_package_list_viewpager);
         viewPager.setAdapter(adapter);
     }
 

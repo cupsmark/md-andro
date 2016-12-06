@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.meetdesk.BaseActivity;
 import com.meetdesk.BaseFragment;
@@ -25,6 +24,7 @@ import com.meetdesk.util.EndlessRecyclerViewScrollListener;
 import com.meetdesk.util.LazyImageLoader;
 import com.meetdesk.util.RecyclerViewItemDivider;
 import com.meetdesk.view.UIText;
+import com.meetdesk.view.UIToast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -216,7 +216,7 @@ public class FragmentHome extends BaseFragment {
                 }
                 else
                 {
-                    Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+                    new UIToast(activity, msg).show();
                 }
             }
         }.execute();
