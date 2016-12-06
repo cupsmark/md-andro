@@ -34,7 +34,6 @@ public class FragmentDetailFacilityList extends BaseFragment {
 
     ViewHorizontallScroll horizontalScroll;
     ArrayList<String> fac_id, fac_title,fac_icon;
-    LayoutInflater inflater;
     LinearLayout horizontalScrollLinear;
     LazyImageLoader imageLoader;
     int widthScreen = 0;
@@ -62,17 +61,14 @@ public class FragmentDetailFacilityList extends BaseFragment {
         if(activity != null)
         {
             init();
+            applyData();
         }
     }
 
     private void init()
     {
-        fac_id = new ArrayList<String>();
-        fac_title = new ArrayList<String>();
-        fac_icon = new ArrayList<String>();
         imageLoader = new LazyImageLoader(activity);
         widthScreen = HelperGeneral.getScreenSize(activity, "w");
-        inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         horizontalScroll = (ViewHorizontallScroll) activity.findViewById(R.id.fragment_detail_facility_list_horizontal);
         horizontalScrollLinear = (LinearLayout) activity.findViewById(R.id.fragment_detail_facility_list_linear);
     }
@@ -98,7 +94,7 @@ public class FragmentDetailFacilityList extends BaseFragment {
         {
             for(int i = 0;i < fac_id.size();i++)
             {
-                View item = inflater.inflate(R.layout.fragment_detail_facility_list_item, null, false);
+                View item = LayoutInflater.from(activity).inflate(R.layout.fragment_detail_facility_list_item, null, false);
                 horizontalScrollLinear.addView(item);
 
                 item.getLayoutParams().width = widthScreen / 3;

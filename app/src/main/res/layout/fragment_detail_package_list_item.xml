@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e4e4e4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/fragment_detail_package_list_item_holder"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/fragment_detail_package_list_item_select">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_black"
+                android:textSize="13sp"
+                android:id="@+id/fragment_detail_package_list_item_title"
+                android:layout_marginBottom="5dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_blue"
+                    android:textSize="20sp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/fragment_detail_package_list_item_price"/>
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_black"
+                    android:textSize="20sp"
+                    android:text="IDR"
+                    android:id="@+id/fragment_detail_package_list_item_exchange_rate"/>
+
+            </LinearLayout>
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_black"
+                android:id="@+id/fragment_detail_package_list_item_desc"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/border_left_grey"
+            android:padding="15dp">
+
+            <com.meetdesk.view.UIText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_black"
+                android:textSize="13sp"
+                android:text="Discount"
+                android:layout_marginBottom="5dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_blue"
+                    android:textSize="20sp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fragment_detail_package_list_item_discount"/>
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_black"
+                    android:textSize="20sp"
+                    android:text="IDR" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.meetdesk.view.UIButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/base_blue"
+        android:text="@string/fragment_detail_package_select"
+        android:textColor="@color/base_white"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:id="@+id/fragment_detail_package_list_item_select"
+        android:layout_alignTop="@+id/fragment_detail_package_list_item_holder"
+        android:layout_alignBottom="@+id/fragment_detail_package_list_item_holder" />
+
+</RelativeLayout>

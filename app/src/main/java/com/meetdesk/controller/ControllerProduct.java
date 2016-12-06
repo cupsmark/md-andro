@@ -20,6 +20,7 @@ public class ControllerProduct {
     Context mContext;
     ArrayList<String> dataID, dataTitle, dataImage, dataDesc, dataRate, dataDate, dataUserID, dataUserName;
     ArrayList<String> facilityID, facilityTitle, facilityIcon;
+    ArrayList<String> packageID, packageMasterID, packageMasterName, packageTitle, packagePrice, packageDiscount, packageDescription;
     String[] field, value;
     boolean success = false;
     String msg, target_id, token;
@@ -39,6 +40,13 @@ public class ControllerProduct {
         facilityID = new ArrayList<String>();
         facilityTitle = new ArrayList<String>();
         facilityIcon = new ArrayList<String>();
+        packageID = new ArrayList<String>();
+        packageMasterID = new ArrayList<String>();
+        packageMasterName = new ArrayList<String>();
+        packageTitle = new ArrayList<String>();
+        packagePrice = new ArrayList<String>();
+        packageDiscount = new ArrayList<String>();
+        packageDescription = new ArrayList<String>();
         msg = "";
         target_id = "0";
         token = "";
@@ -162,6 +170,18 @@ public class ControllerProduct {
                                 facilityID.add(objArrFacility.getString("id"));
                                 facilityTitle.add(objArrFacility.getString("name"));
                                 facilityIcon.add(objArrFacility.getString("icon"));
+                            }
+                            JSONArray arrPackage = objectItem.getJSONArray("package");
+                            for(int b = 0;b < arrPackage.length();b++)
+                            {
+                                JSONObject objArrPackage = arrPackage.getJSONObject(b);
+                                packageID.add(objArrPackage.getString("id"));
+                                packageMasterID.add(objArrPackage.getString("package_master_id"));
+                                packageMasterName.add(objArrPackage.getString("package_master_name"));
+                                packageTitle.add(objArrPackage.getString("package_title"));
+                                packagePrice.add(objArrPackage.getString("price"));
+                                packageDiscount.add(objArrPackage.getString("discount"));
+                                packageDescription.add(objArrPackage.getString("package_description"));
                             }
                         }
                         success = true;
@@ -424,6 +444,41 @@ public class ControllerProduct {
     public ArrayList<String> getFacilityIcon()
     {
         return facilityIcon;
+    }
+
+    public ArrayList<String> getPackageID()
+    {
+        return packageID;
+    }
+
+    public ArrayList<String> getPackageMasterID()
+    {
+        return packageMasterID;
+    }
+
+    public ArrayList<String> getPackageMasterName()
+    {
+        return packageMasterName;
+    }
+
+    public ArrayList<String> getPackageTitle()
+    {
+        return packageTitle;
+    }
+
+    public ArrayList<String> getPackagePrice()
+    {
+        return packagePrice;
+    }
+
+    public ArrayList<String> getPackageDiscount()
+    {
+        return packageDiscount;
+    }
+
+    public ArrayList<String> getPackageDescription()
+    {
+        return packageDescription;
     }
 
     public boolean getSuccess()

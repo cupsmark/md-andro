@@ -44,7 +44,7 @@ public class FragmentDetail extends BaseFragment {
     LinearLayout linearFragmentFacility;
     String selectedID = "0",dataID, dataTitle, dataImage, dataDesc, dataRate, dataUserID, dataUsername;
     ArrayList<String> facilityID, facilityTitle, facilityIcon;
-    UIButton buttonNext;
+    ArrayList<String> packageID, packageMasterID, packageMasterName, packageTitle, packagePrice, packageDiscount, packageDescription;
     Map<String, String> param;
     int widthScreen;
     LazyImageLoader imageLoader;
@@ -90,12 +90,18 @@ public class FragmentDetail extends BaseFragment {
         facilityID = new ArrayList<String>();
         facilityIcon = new ArrayList<String>();
         facilityTitle = new ArrayList<String>();
+        packageID = new ArrayList<String>();
+        packageMasterID = new ArrayList<String>();
+        packageMasterName = new ArrayList<String>();
+        packageTitle = new ArrayList<String>();
+        packagePrice = new ArrayList<String>();
+        packageDiscount = new ArrayList<String>();
+        packageDescription = new ArrayList<String>();
         imagebuttonBack = (ImageButton) activity.findViewById(R.id.fragment_detail_imagebutton_back);
         pagetitle = (UIText) activity.findViewById(R.id.fragment_detail_text_title);
         imageviewImage = (ImageView) activity.findViewById(R.id.fragment_detail_image);
         rateValue = (UIText) activity.findViewById(R.id.fragment_detail_review_value);
         viewDesc = (UIText) activity.findViewById(R.id.fragment_detail_desc);
-        buttonNext = (UIButton) activity.findViewById(R.id.fragment_detail_next_step);
         buttonSendMessage = (LinearLayout) activity.findViewById(R.id.detail_button_message);
         buttonAddToWishlist = (LinearLayout) activity.findViewById(R.id.detail_button_wishlist);
         linearFragmentFacility = (LinearLayout) activity.findViewById(R.id.fragment_detail_linear_fragment_facility);
@@ -116,6 +122,7 @@ public class FragmentDetail extends BaseFragment {
             boolean success = false;
             String msg;
             ArrayList<String> tempFacID, tempFacTitle, tempFacIcon;
+            ArrayList<String> tempPackageID, tempPackageMasterID, tempPackageMasterName, tempPackageTitle, tempPackagePrice, tempPackageDiscount, tempPackageDescription;
 
             @Override
             protected void onPreExecute() {
@@ -123,6 +130,13 @@ public class FragmentDetail extends BaseFragment {
                 tempFacID = new ArrayList<String>();
                 tempFacIcon = new ArrayList<String>();
                 tempFacTitle = new ArrayList<String>();
+                tempPackageID = new ArrayList<String>();
+                tempPackageMasterID = new ArrayList<String>();
+                tempPackageMasterName = new ArrayList<String>();
+                tempPackageTitle = new ArrayList<String>();
+                tempPackagePrice = new ArrayList<String>();
+                tempPackageDiscount = new ArrayList<String>();
+                tempPackageDescription = new ArrayList<String>();
             }
 
             @Override
@@ -146,6 +160,13 @@ public class FragmentDetail extends BaseFragment {
                     tempFacID.addAll(product.getFacilityID());
                     tempFacTitle.addAll(product.getFacilityTitle());
                     tempFacIcon.addAll(product.getFacilityIcon());
+                    tempPackageID.addAll(product.getPackageID());
+                    tempPackageMasterID.addAll(product.getPackageMasterID());
+                    tempPackageMasterName.addAll(product.getPackageMasterName());
+                    tempPackageTitle.addAll(product.getPackageTitle());
+                    tempPackagePrice.addAll(product.getPackagePrice());
+                    tempPackageDiscount.addAll(product.getPackageDiscount());
+                    tempPackageDescription.addAll(product.getPackageDescription());
                 }
                 else
                 {
@@ -164,15 +185,6 @@ public class FragmentDetail extends BaseFragment {
                     rateValue.setText(dataRate);
                     viewDesc.setText(dataDesc);
 
-                    buttonNext.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Map<String, String> param = new HashMap<String, String>();
-                            param.put("dataID", dataID);
-                            FragmentPayment payment = new FragmentPayment();
-                            iFragment.onNavigate(payment, param);
-                        }
-                    });
                     buttonAddToWishlist.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -191,6 +203,7 @@ public class FragmentDetail extends BaseFragment {
                         }
                     });
                     addViewFacility(tempFacID, tempFacTitle, tempFacIcon);
+                    addViewPackage(tempPackageID,tempPackageMasterID, tempPackageMasterName, tempPackageTitle,tempPackagePrice, tempPackageDiscount, tempPackageDescription);
                     imageLoader.showImage(HelperNative.getURL(11171) + dataImage, imageviewImage);
                 }
                 else
@@ -261,8 +274,34 @@ public class FragmentDetail extends BaseFragment {
             facilityList.setDataID(facilityID);
             facilityList.setDataIcon(facilityIcon);
             facilityList.setDataTitle(facilityTitle);
-            facilityList.onUpdate();
-            getChildFragmentManager().beginTransaction().replace(R.id.fragment_detail_linear_fragment_facility, facilityList);
+            getChildFragmentManager().beginTransaction().replace(R.id.fragment_detail_linear_fragment_facility, facilityList).commit();
+        }
+    }
+
+    private void addViewPackage(ArrayList<String> pacID,ArrayList<String> pacMstrID,ArrayList<String> pacMstrName,ArrayList<String> pacTitle, ArrayList<String> pacPrice, ArrayList<String> pacDiscount,ArrayList<String> pacDesc)
+    {
+        if(pacID.size() > 0)
+        {
+            packageID.addAll(pacID);
+            packageMasterID.addAll(pacMstrID);
+            packageMasterName.addAll(pacMstrName);
+            packageTitle.addAll(pacTitle);
+            packagePrice.addAll(pacPrice);
+            packageDiscount.addAll(pacDiscount);
+            packageDescription.addAll(pacDesc);
+
+            FragmentDetailPackageList packageList = new FragmentDetailPackageList();
+            packageList.setPackageID(packageID);
+            packageList.setPackageMasterID(packageMasterID);
+            packageList.setPackageMasterName(packageMasterName);
+            packageList.setPackageTitle(packageTitle);
+            packageList.setPackagePrice(packagePrice);
+            packageList.setPackageDiscount(packageDiscount);
+            packageList.setPackageDescription(packageDescription);
+            Map<String, String> parameter = new HashMap<String, String>();
+            parameter.put("product", selectedID);
+            packageList.setParameter(parameter);
+            getChildFragmentManager().beginTransaction().replace(R.id.fragment_detail_linear_fragment_package, packageList).commit();
         }
     }
 }

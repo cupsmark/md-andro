@@ -83,6 +83,22 @@ JNIEXPORT jstring JNICALL Java_com_meetdesk_helper_HelperNative_getURL(JNIEnv * 
     {
         return (*env)->NewStringUTF(env, "http://meetdesk.cupslice.com/index.php/api/v1/auth-login-social");
     }
+    else if (code == 11192)
+    {
+        return (*env)->NewStringUTF(env, "http://meetdesk.cupslice.com/index.php/api/v1/booking-check");
+    }
+    else if (code == 11193)
+    {
+        return (*env)->NewStringUTF(env, "http://meetdesk.cupslice.com/index.php/api/v1/booking-save");
+    }
+    else if (code == 11194)
+    {
+        return (*env)->NewStringUTF(env, "http://meetdesk.cupslice.com/index.php/api/v1/booking-review");
+    }
+    else if (code == 11195)
+    {
+        return (*env)->NewStringUTF(env, "http://meetdesk.cupslice.com/index.php/api/v1/booking-list");
+    }
     else {
         return (*env)->NewStringUTF(env, "no-data");
     }

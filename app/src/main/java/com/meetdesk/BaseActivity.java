@@ -3,6 +3,7 @@ package com.meetdesk;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,6 +38,7 @@ import com.meetdesk.view.UIText;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BaseActivity extends FragmentActivity implements HelperGeneral.FragmentInterface{
@@ -327,8 +329,18 @@ public class BaseActivity extends FragmentActivity implements HelperGeneral.Frag
         public boolean isHeader(int position) {
             return position == 0;
         }
+    }
 
-
-
+    public void removeFragment(int countBeDelete)
+    {
+        List<Fragment> lists = getSupportFragmentManager().getFragments();
+        for(int i = countBeDelete;i > 0;i--)
+        {
+            BaseFragment fragment = (BaseFragment) lists.get(i);
+            if(fragment != null)
+            {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
+        }
     }
 }

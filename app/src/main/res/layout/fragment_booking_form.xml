@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/fragment_booking_form_topbar">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_back_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/fragment_booking_form_back"/>
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:text="@string/pagetitle_booking"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_booking_form_topbar"
+        android:layout_above="@+id/fragment_booking_form_next_step">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/fragment_booking_form_linear">
+
+            <!-- SEGMEN SUB CAPTION-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/base_blue_darker"
+                android:padding="5dp">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/base_white"
+                    android:textSize="16sp"
+                    android:id="@+id/fragment_detail_text_title"
+                    android:text="@string/pagetitle_booking_form" />
+
+            </RelativeLayout>
+
+            <!-- SEGMENT FORM SELECT DATE -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/fragment_booking_form_select_date_from">
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_text_normal"
+                        android:textSize="15sp"
+                        android:text="@string/fragment_booking_form_select_date_from"
+                        android:layout_marginBottom="5dp"
+                        android:textAllCaps="true" />
+
+                    <RelativeLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:id="@+id/fragment_booking_form_select_date_from_choice"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/border_bottom_white_old"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp">
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/base_blue"
+                            android:textSize="14sp"
+                            android:id="@+id/fragment_booking_form_select_date_from_choice_selected"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_toLeftOf="@+id/fragment_booking_form_select_date_from_choice_icon"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/icon_arrow_down_black"
+                            android:scaleType="centerInside"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/fragment_booking_form_select_date_from_choice_icon"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/fragment_booking_form_select_date_to">
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_text_normal"
+                        android:textSize="15sp"
+                        android:text="@string/fragment_booking_form_select_date_to"
+                        android:layout_marginBottom="5dp"
+                        android:textAllCaps="true" />
+
+                    <RelativeLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:id="@+id/fragment_booking_form_select_date_to_choice"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/border_bottom_white_old"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp">
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/base_blue"
+                            android:textSize="14sp"
+                            android:id="@+id/fragment_booking_form_select_date_to_choice_selected"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_toLeftOf="@+id/fragment_booking_form_select_date_to_choice_icon"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/icon_arrow_down_black"
+                            android:scaleType="centerInside"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/fragment_booking_form_select_date_to_choice_icon"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!-- END SEGMENT SELECT DATE -->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <!-- SEGMENT UNIT -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_text_normal"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15sp"
+                        android:text="@string/fragment_booking_form_caption_unit"
+                        android:textAllCaps="true" />
+
+                    <RelativeLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:id="@+id/fragment_booking_form_unit_select"
+                        android:background="@drawable/border_bottom_white_old"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp">
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/base_blue"
+                            android:textSize="14sp"
+                            android:id="@+id/fragment_booking_form_unit_select_value"
+                            android:layout_alignParentLeft="true"
+                            android:layout_toLeftOf="@+id/fragment_booking_form_unit_select_icon"/>
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/icon_arrow_down_black"
+                            android:scaleType="centerInside"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/fragment_booking_form_unit_select_icon"
+                            android:layout_marginLeft="5dp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+                <!-- END SEGMENT UNIT -->
+
+                <!-- SEGMENT SELECT KUOTA -->
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true">
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_text_normal"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:textSize="15sp"
+                        android:text="@string/fragment_booking_form_caption_quota"
+                        android:textAllCaps="true" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:background="@drawable/border_bottom_white_old">
+
+                        <com.meetdesk.view.UIEditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:textSize="14sp"
+                            android:textColor="@color/base_blue"
+                            android:gravity="left|center_vertical"
+                            android:layout_marginRight="10dp"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:text="0"
+                            android:layout_alignParentLeft="true"
+                            android:layout_toLeftOf="@+id/fragment_booking_form_quota_icon"
+                            android:id="@+id/fragment_booking_form_quota_edittext"/>
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/base_grey_light"
+                            android:layout_gravity="center_vertical"
+                            android:textSize="14sp"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/fragment_booking_form_quota_icon"
+                            android:text="@string/fragment_booking_form_caption_quota_person"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+                <!-- END SEGMENT QUOTA -->
+
+            </RelativeLayout>
+
+
+            <!--SEGMENT SELECT HOUR -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fragment_booking_form_container_hour"
+                android:layout_margin="15dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/fragment_booking_form_select_hour_from"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginRight="15dp">
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_text_normal"
+                        android:textSize="15sp"
+                        android:text="@string/fragment_booking_form_select_hour_from"
+                        android:layout_marginBottom="5dp"
+                        android:textAllCaps="true" />
+
+                    <RelativeLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:paddingRight="5dp"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:id="@+id/fragment_booking_form_select_hour_from_choice"
+                        android:background="@drawable/border_bottom_white_old">
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/base_blue"
+                            android:textSize="14sp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_toLeftOf="@+id/fragment_booking_form_select_hour_from_choice_icon"
+                            android:id="@+id/fragment_booking_form_select_hour_from_choice_selected" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/icon_arrow_down_black"
+                            android:scaleType="centerInside"
+                            android:layout_marginLeft="5dp"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/fragment_booking_form_select_hour_from_choice_icon"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/fragment_booking_form_select_hour_to">
+
+                    <com.meetdesk.view.UIText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/base_text_normal"
+                        android:textSize="15sp"
+                        android:text="@string/fragment_booking_form_select_hour_to"
+                        android:layout_marginBottom="5dp"
+                        android:textAllCaps="true" />
+
+                    <RelativeLayout
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:id="@+id/fragment_booking_form_select_hour_to_choice"
+                        android:padding="5dp"
+                        android:background="@drawable/border_bottom_white_old">
+
+                        <com.meetdesk.view.UIText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/base_blue"
+                            android:textSize="14sp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_toLeftOf="@+id/fragment_booking_form_select_hour_to_choice_icon"
+                            android:id="@+id/fragment_booking_form_select_hour_to_choice_selected" />
+
+                        <ImageView
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/icon_arrow_down_black"
+                            android:scaleType="centerInside"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/fragment_booking_form_select_hour_to_choice_icon"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <!-- END SEGMENT SELECT HOUR -->
+
+            <com.meetdesk.view.UIButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_blue"
+                android:textColor="@color/base_white"
+                android:text="@string/fragment_booking_form_caption_check_availability"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:id="@+id/fragment_booking_form_check_availability"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="30dp"
+                android:paddingTop="10dp"
+                android:paddingRight="30dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.meetdesk.view.UIButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@color/base_blue"
+        android:textColor="@color/base_white"
+        android:text="@string/fragment_booking_form_caption_next"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/fragment_booking_form_next_step"/>
+
+</RelativeLayout>
