@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -317,8 +318,11 @@ public class FragmentBookingReview extends BaseFragment {
                 }
                 if(success)
                 {
-                    activity.removeFragment(1);
+                    activity.removeFragment(2);
                     activity.onBackPressed();
+                    Map<String, String> param = new HashMap<String, String>();
+                    FragmentBookingThanks thanks = new FragmentBookingThanks();
+                    iFragment.onNavigate(thanks, param);
                 }
                 new UIToast(activity, msg).show();
             }

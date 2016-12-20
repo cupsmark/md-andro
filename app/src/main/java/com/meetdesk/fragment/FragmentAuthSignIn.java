@@ -66,7 +66,7 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
 
     GoogleApiClient mGoogleApiClient;
     SignInButton btnLoginGoogle;
-    boolean isLogout = false;
+    boolean isLogout = false, isGoogleLogin = false;
 
 
     @Nullable
@@ -119,6 +119,7 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
         btnLoginFB.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                isGoogleLogin = false;
                 AccessToken fbToken = loginResult.getAccessToken();
                 getFBUserdata(fbToken);
             }
@@ -136,12 +137,14 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isGoogleLogin = false;
                 doLogin();
             }
         });
         btnLoginGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isGoogleLogin = true;
                 doLoginGoogle();
             }
         });
@@ -275,23 +278,26 @@ public class FragmentAuthSignIn extends BaseFragment implements GoogleApiClient.
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                GoogleSignInAccount acct = result.getSignInAccount();
-                // Get account information
-                String sourceEngine = "google";
-                String tokenDefault = HelperGeneral.getDeviceID(activity);
-                String fullname = acct.getDisplayName();
-                String email = acct.getEmail();
-                String gender = "0";
-                String birthdate = "";
-                String socialID = acct.getId();
-                String avatar = acct.getPhotoUrl().toString();
-                String deviceID = tokenDefault;
+        if(isGoogleLogin)
+        {
+            if (requestCode == RC_SIGN_IN) {
+                GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+                if (result.isSuccess()) {
+                    GoogleSignInAccount acct = result.getSignInAccount();
+                    // Get account information
+                    String sourceEngine = "google";
+                    String tokenDefault = HelperGeneral.getDeviceID(activity);
+                    String fullname = acct.getDisplayName();
+                    String email = acct.getEmail();
+                    String gender = "0";
+                    String birthdate = "";
+                    String socialID = acct.getId();
+                    String avatar = acct.getPhotoUrl().toString();
+                    String deviceID = tokenDefault;
 
-                String[] valueSend = new String[]{tokenDefault, sourceEngine, fullname, email, gender, birthdate, socialID, avatar, deviceID};
-                doLoginSocial(valueSend);
+                    String[] valueSend = new String[]{tokenDefault, sourceEngine, fullname, email, gender, birthdate, socialID, avatar, deviceID};
+                    doLoginSocial(valueSend);
+                }
             }
         }
     }

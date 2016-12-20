@@ -215,6 +215,13 @@ public class FragmentTransactionHistory extends BaseFragment {
         adapter.notifyDataSetChanged();*/
     }
 
+    private void goConfirmation()
+    {
+        Map<String, String> param = new HashMap<String, String>();
+        FragmentConfirmation confirmation = new FragmentConfirmation();
+        iFragment.onNavigate(confirmation, param);
+    }
+
 
     public class TransactionHistoryAdapter extends BaseExpandableListAdapter{
 
@@ -295,6 +302,12 @@ public class FragmentTransactionHistory extends BaseFragment {
             holder.groupTitle.setText(dataGroup[1]);
             holder.groupDesc.setText(desc);
             holder.groupStatus.setText(dataGroup[3]);
+            holder.groupProcess.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goConfirmation();
+                }
+            });
             if(isExpanded)
             {
                 holder.groupTriangle.setVisibility(View.VISIBLE);

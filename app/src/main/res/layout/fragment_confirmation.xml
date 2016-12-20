@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/base_blue"
+        android:id="@+id/fragment_confirmation_topbar">
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_back_white"
+            android:scaleType="centerInside"
+            android:layout_alignParentLeft="true"
+            android:contentDescription="@string/app_name"
+            android:layout_centerVertical="true"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:background="@android:color/transparent"
+            android:adjustViewBounds="true"
+            android:id="@+id/fragment_confirmation_back" />
+
+        <com.meetdesk.view.UIText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/base_white"
+            android:layout_centerInParent="true"
+            app:fontType="bold"
+            android:text="@string/pagetitle_confirmation"/>
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom_white_old"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fragment_confirmation_section_fullname">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_confirmation_field_caption_fullname"
+                    android:textSize="13sp"
+                    app:fontType="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:textAllCaps="true" />
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:textColor="@color/base_black"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:id="@+id/fragment_confirmation_edittext_fullname"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom_white_old"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fragment_confirmation_section_price">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_confirmation_field_caption_price"
+                    android:textSize="13sp"
+                    app:fontType="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:textAllCaps="true" />
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:textColor="@color/base_black"
+                    android:background="@android:color/transparent"
+                    android:inputType="number"
+                    android:id="@+id/fragment_confirmation_edittext_price"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom_white_old"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fragment_confirmation_section_date">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_confirmation_field_caption_date"
+                    android:textSize="13sp"
+                    app:fontType="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:textAllCaps="true" />
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:textColor="@color/base_black"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:id="@+id/fragment_confirmation_edittext_date"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom_white_old"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fragment_confirmation_section_method">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_confirmation_field_caption_payment_method"
+                    android:textSize="13sp"
+                    app:fontType="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:textAllCaps="true" />
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:textColor="@color/base_black"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:id="@+id/fragment_confirmation_edittext_method"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom_white_old"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fragment_confirmation_section_from">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_confirmation_field_caption_from"
+                    android:textSize="13sp"
+                    app:fontType="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:textAllCaps="true" />
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:textColor="@color/base_black"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:id="@+id/fragment_confirmation_edittext_from"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom_white_old"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fragment_confirmation_section_destination">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_confirmation_field_caption_destination"
+                    android:textSize="13sp"
+                    app:fontType="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:textAllCaps="true" />
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:textColor="@color/base_black"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:id="@+id/fragment_confirmation_edittext_destination"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom_white_old"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fragment_confirmation_section_desc">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_confirmation_field_caption_desc"
+                    android:textSize="13sp"
+                    app:fontType="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:textAllCaps="true" />
+
+                <com.meetdesk.view.UIEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:textColor="@color/base_black"
+                    android:background="@android:color/transparent"
+                    android:inputType="textMultiLine"
+                    android:hint="(Optional)"
+                    android:textColorHint="@color/base_text_normal"
+                    android:id="@+id/fragment_confirmation_edittext_desc"/>
+
+            </LinearLayout>
+
+            <com.meetdesk.view.UIButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/base_white"
+                android:background="@drawable/bg_rounded_blue"
+                android:textSize="16sp"
+                android:text="@string/fragment_confirmation_field_caption_upload"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textAllCaps="true"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_bottom_white_old"
+                android:paddingBottom="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/fragment_confirmation_section_attachment">
+
+                <com.meetdesk.view.UIText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/base_text_normal"
+                    android:text="@string/fragment_confirmation_field_caption_attachment"
+                    android:textSize="13sp"
+                    app:fontType="bold"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:textAllCaps="true" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@color/base_text_normal"
+                    android:scaleType="centerInside"
+                    android:layout_marginTop="10dp"
+                    android:adjustViewBounds="true"/>
+
+            </LinearLayout>
+
+            <com.meetdesk.view.UIButton
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:textColor="@color/base_white"
+                android:background="@color/base_blue"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textAllCaps="true"
+                android:text="Send Confirmation"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

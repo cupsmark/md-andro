@@ -51,6 +51,18 @@
     <string name="fragment_booking_form_caption_check_availability">Check Availability</string>
     <string name="fragment_booking_form_caption_next">Next</string>
     <string name="fragment_booking_review_caption_book">Book Now</string>
+    <string name="fragment_booking_thanks_caption_title">Thank You For Booking With Us</string>
+    <string name="fragment_booking_thanks_desc">Thank you for your booked. You will receive a message from the tenant for more information.</string>
+    <string name="fragment_booking_thanks_back_home">Back to Home</string>
+    <string name="fragment_confirmation_field_caption_fullname">Invoice Number</string>
+    <string name="fragment_confirmation_field_caption_price">Total Price</string>
+    <string name="fragment_confirmation_field_caption_date">Payment Date</string>
+    <string name="fragment_confirmation_field_caption_payment_method">Payment Method</string>
+    <string name="fragment_confirmation_field_caption_from">From Account</string>
+    <string name="fragment_confirmation_field_caption_destination">Destination Account</string>
+    <string name="fragment_confirmation_field_caption_desc">Description</string>
+    <string name="fragment_confirmation_field_caption_upload">Upload Proof of Payment</string>
+    <string name="fragment_confirmation_field_caption_attachment">Attachment</string>
 
     <string name="dialog_confirm_title">Exit Application</string>
     <string name="dialog_confirm_yes">Yes</string>
@@ -85,5 +97,7 @@
     <string name="pagetitle_profile_edit">Edit Profile</string>
     <string name="pagetitle_req_merchant">Rent Out Space</string>
     <string name="pagetitle_select_type">Select Space</string>
+    <string name="pagetitle_booking_thanks">Thank You</string>
+    <string name="pagetitle_confirmation">Confirmation</string>
     <string name="title_activity_activity_receiver">ActivityReceiver</string>
 </resources>
